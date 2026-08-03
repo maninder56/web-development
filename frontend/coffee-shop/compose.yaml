@@ -1,0 +1,30 @@
+services:
+  nextjs-prod-standalone:
+    build:
+      context: . 
+      dockerfile: Dockerfile
+    image: coffee-shop:prod
+    container_name: coffee-shop-prod
+    ports:
+      - "3000:3000"
+
+  nextjs-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: coffee-shop:dev
+    container_name: coffee-shop-dev
+    ports:
+      - "3000:3000"
+    environment:
+      - WATCHPACK_POLLING=true
+    develop:
+      watch:
+        - path: . 
+          action: sync
+          target: /app
+          ignore:
+          - node_modules/
+          - .next/
+        - action: rebuild
+          path: package.json
