@@ -1,9 +1,8 @@
 # ============================================
 # Development Dockerfile for Next.js
 # ============================================
-ARG NODE_VERSION=26.5.1-slim
 
-FROM node:${NODE_VERSION} AS dev
+FROM node:26.5.1-slim AS dev
 
 WORKDIR /app
 
