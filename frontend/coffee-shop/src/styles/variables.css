@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+    /* -------------------
+        Palette
+    ----------------------*/
+
+    --color-neutral-50: #f1f1f0;
+    --color-neutral-200: #c0bdb8;
+    --color-neutral-400: #918c84;
+    --color-neutral-600: #6a655c;
+    --color-neutral-800: #403d38;
+    --color-neutral-900: #312f2a;
+
+    --color-brand-50: #fcf4e8;
+    --color-brand-100: #f7deb7;
+    --color-brand-200: #f3cd94;
+    --color-brand-400: #eaa945;
+    --color-brand-500: #e59317;
+    --color-brand-600: #d08615;
+    --color-brand-700: #a36810;
+    --color-brand-800: #7e510d;
+    --color-brand-900: #603e0a;
+
+    --color-accent-400: #eb8d45;
+    --color-accent-500: #e67017;
+    --color-accent-600: #d16615;
+    --color-accent-800: #7f3e0d;
+    --color-accent-900: #612f0a;
+
+    --color-error-400: #ea4545;
+    --color-error-500: #e51717;
+    --color-error-600: #d01515;
+
+    --color-success-400: #65DB75; 
+    --color-success-500: #3ED252; 
+    --color-success-600: #38BF4B;
+
+
+
+
+    /* -------------------
+        Semantic
+    ----------------------*/
+
+    --color-text-primary: var(--color-brand-900);
+    --color-text-secondary: var(--color-brand-700);
+    --color-text-negative: var(--color-error-400);
+    --color-text-positive: var(--color-success-400);
+    --color-text-on-brand: var(--color-brand-100);
+
+    --color-surface-primary: var(--color-brand-100);
+    --color-surface-brand: var(--color-brand-500);
+    --color-surface-secondary: var(--color-accent-800);
+    --color-surface-background: var(--color-brand-50);
+
+    --color-border-primary: var(--color-brand-800);
+    --color-border-secondary: var(--color-brand-500);
+    --color-border-subtle: var(--color-brand-100);
+
+    
+
+}
