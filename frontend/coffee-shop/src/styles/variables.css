@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 @theme {
+    /* Fonts */
+    --font-heading: var(--font-Cause); 
+    --font-body: var(--font-NanumGothic); 
+
+
     /* -------------------
         Palette
     ----------------------*/
@@ -57,7 +62,6 @@
     --color-border-primary: var(--color-brand-800);
     --color-border-secondary: var(--color-brand-500);
     --color-border-subtle: var(--color-brand-100);
-
     
 
 }

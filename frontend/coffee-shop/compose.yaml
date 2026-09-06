@@ -26,5 +26,6 @@ services:
           ignore:
           - node_modules/
           - .next/
+          - .git/
         - action: rebuild
           path: package.json
