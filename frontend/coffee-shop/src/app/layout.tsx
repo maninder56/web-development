@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { cause, naumGothic } from "./fonts";
+import Navigation from "@/components/navigation";
 
 
 export const metadata: Metadata = {
@@ -18,7 +19,10 @@ export default function RootLayout({
       lang="en"
       className={`${cause.variable} ${naumGothic.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-row justify-center">{children}</body>
+      <body className="min-h-full flex flex-row justify-center">
+        <Navigation />
+        <main>{children}</main>
+        </body>
     </html>
   );
 }

@@ -18,14 +18,7 @@ services:
       - "3000:3000"
     environment:
       - WATCHPACK_POLLING=true
-    develop:
-      watch:
-        - path: . 
-          action: sync
-          target: /app
-          ignore:
-          - node_modules/
-          - .next/
-          - .git/
-        - action: rebuild
-          path: package.json
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
