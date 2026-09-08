@@ -10,12 +10,9 @@ COPY package.json package-lock.json ./
 
 RUN npm ci --no-audit --no-fund
 
-# Create the dirs that will become anonymous volumes, and hand them to node
-RUN mkdir -p .next node_modules && chown -R node:node /app
+COPY . . 
 
 ENV HOSTNAME="0.0.0.0"
-
-USER node
 
 EXPOSE 3000
 

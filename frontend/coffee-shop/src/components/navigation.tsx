@@ -2,7 +2,7 @@
 export default function Navigation() {
     return (
         <nav>
-            This is navigation
+            this is navigation
         </nav>
     ); 
 }

@@ -6,7 +6,7 @@ services:
     image: coffee-shop:prod
     container_name: coffee-shop-prod
     ports:
-      - "3000:3000"
+      - "3001:3001"
 
   nextjs-dev:
     build:
@@ -16,9 +16,14 @@ services:
     container_name: coffee-shop-dev
     ports:
       - "3000:3000"
-    environment:
-      - WATCHPACK_POLLING=true
-    volumes:
-      - .:/app
-      - /app/node_modules
-      - /app/.next
+    develop:
+      watch:
+        - path: . 
+          action: sync
+          target: /app
+          ignore:
+            - node_modules/
+            - .next/
+        - action: rebuild
+          path: package.json
+    
