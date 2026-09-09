@@ -1,2 +1,2 @@
 
-export type WebsitePages = '/' | 'menu' | 'about' | 'visitus'; 
+export type WebsitePages = '/' | '/menu' | '/about' | '/visitus'; 

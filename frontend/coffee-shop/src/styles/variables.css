@@ -48,17 +48,22 @@
         Semantic
     ----------------------*/
 
+    /* Text */
     --color-text-primary: var(--color-brand-900);
     --color-text-secondary: var(--color-brand-700);
     --color-text-negative: var(--color-error-400);
     --color-text-positive: var(--color-success-400);
     --color-text-on-brand: var(--color-brand-100);
 
+    /* Surface */
     --color-surface-primary: var(--color-brand-100);
-    --color-surface-brand: var(--color-brand-500);
-    --color-surface-secondary: var(--color-accent-800);
+    --color-surface-brand: var(--color-accent-800);
     --color-surface-background: var(--color-brand-50);
 
+    /* Interactive surface */
+    --color-surface-hover: var(--color-brand-100); 
+
+    /* Border */
     --color-border-primary: var(--color-brand-800);
     --color-border-secondary: var(--color-brand-500);
     --color-border-subtle: var(--color-brand-100);
