@@ -68,8 +68,7 @@ export default function Navigation() {
         <nav className='min-h-20 flex justify-center bg-surface-background'>
             <div ref={containerRef} className='m-2 flex-1 flex justify-between max-w-250 relative'>
                 <div ref={pillRef} className={`
-                    bg-amber-300
-                    border-solid border-red-600 border
+                    bg-surface-brand rounded-2xl 
                     absolute top-0 left-0
                     transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]
                 `} style={{
@@ -83,7 +82,6 @@ export default function Navigation() {
                         'height 300ms cubic-bezier(0.22,1,0.36,1) 80ms'
 
                 }} />
-            {/* ${!isHomePage ? 'translate-x-90' : ''} */}
                 <div className='mt-auto mb-auto z-10'>
                     <Link ref={homeRef} href={homePage} 
                         className={`
@@ -91,6 +89,7 @@ export default function Navigation() {
                             text-4xl font-heading
                             pl-3 pr-3 pt-2 pb-2 rounded-2xl 
                             transition delay-100 ease-in 
+                            ${isHomePage ? 'text-text-on-brand' : 'text-text-primary'}
                         `}
                         
                     >
@@ -98,8 +97,8 @@ export default function Navigation() {
                         <svg width='50' height='50' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
                             <path d='M10 2v2m4-2v2m2 4a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1M6 2v2' 
                                 className='transition delay-100 ease-in' 
-                                stroke={'#603e0a'} 
-                                // stroke={isHomePage ? '#f7deb7' : '#603e0a'} 
+                                // stroke={'#603e0a'} 
+                                stroke={isHomePage ? '#f7deb7' : '#603e0a'} 
                                 strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
                         </svg>
                     </Link>
@@ -110,6 +109,7 @@ export default function Navigation() {
                             className={`
                                 pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
                                 transition delay-100 ease-in 
+                                ${pathName === menuPage ? 'text-text-on-brand' : ''}
                             `}
                         >Menu</Link>
                     </li>
@@ -118,6 +118,7 @@ export default function Navigation() {
                             className={`
                                 pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
                                 transition delay-100 ease-in 
+                                ${pathName === aboutPage ? 'text-text-on-brand' : ''}
                             `}
                         >About</Link>
                     </li>
@@ -126,6 +127,7 @@ export default function Navigation() {
                             className={`
                                 pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
                                 transition delay-100 ease-in 
+                                ${pathName === visitUsPage ? 'text-text-on-brand' : ''}
                             `}
                         >Visit Us</Link>
                     </li>
