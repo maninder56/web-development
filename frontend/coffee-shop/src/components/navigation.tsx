@@ -24,12 +24,9 @@ export default function Navigation() {
     const containerRef = useRef<HTMLDivElement | null>(null); 
 
     const pillRef = useRef<HTMLDivElement | null>(null); 
-    const [pill, setPill] = useState({
-        x: 0, y: 0, width: 0, height: 0,
-    }); 
-
 
     useLayoutEffect(() => {
+
         function getActiveRef() {
             switch (pathName) {
                 case homePage: 
@@ -46,24 +43,33 @@ export default function Navigation() {
         }
 
         function updatePill() {
+            const container = containerRef.current; 
+            const pill = pillRef.current; 
             const activeRef = getActiveRef(); 
 
-            if (!activeRef || !containerRef.current) return; 
+            if (!activeRef || !container || !pill) return; 
 
-            const containerRect = containerRef.current.getBoundingClientRect(); 
+            const containerRect = container.getBoundingClientRect(); 
             const activeRect = activeRef.getBoundingClientRect(); 
 
-            setPill({
-                x: activeRect.left - containerRect.left,
-                y: activeRect.top - containerRect.top,
-                width: activeRect.width,
-                height: activeRect.height,
-            });
+            pill.style.transform = `
+                translate(
+                    ${activeRect.left - containerRect.left}px, 
+                    ${activeRect.top - containerRect.top}px
+                )
+            `; 
+
+            pill.style.width = `${activeRect.width}px`; 
+            pill.style.height = `${activeRect.height}px`; 
         }
 
         updatePill(); 
 
-        const observer = new ResizeObserver(updatePill); 
+        const observer = new ResizeObserver(() => {
+           
+            updatePill(); 
+
+        }); 
 
         if (containerRef.current) {
             observer.observe(containerRef.current); 
@@ -79,18 +85,10 @@ export default function Navigation() {
                 <div ref={pillRef} className={`
                     bg-surface-brand rounded-2xl 
                     absolute top-0 left-0
-                    transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]
-                `} style={{
-                    transform: `translate(${pill.x}px, ${pill.y}px)`, 
-                    width: `${pill.width}px`,
-                    height: `${pill.height}px`,
-
-                    transition: 
-                        'transform 400ms cubic-bezier(0.22,1,0.36,1), ' +
-                        'width 300ms cubic-bezier(0.22,1,0.36,1) 50ms, ' +
-                        'height 300ms cubic-bezier(0.22,1,0.36,1) 50ms'
-
-                }} />
+                    transition-[transform,width,height]
+                    duration-300 delay-50
+                    ease-[cubic-bezier(0.22,1,0.36,1)]
+                `} />
                 <div className='mt-auto mb-auto z-10'>
                     <Link ref={homeRef} href={homePage} 
                         className={`
