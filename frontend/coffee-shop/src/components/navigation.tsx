@@ -4,7 +4,7 @@ import '@/styles/variables.css';
 import { WebsitePages } from '@/types/global';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 export default function Navigation() {
     const pathName = usePathname(); 
@@ -20,13 +20,6 @@ export default function Navigation() {
     const menuRef = useRef<HTMLAnchorElement | null>(null); 
     const aboutRef = useRef<HTMLAnchorElement | null>(null); 
     const visitUsRef = useRef<HTMLAnchorElement | null>(null); 
-
-    const pageAndRefList = [
-        {page: homePage, ref: homeRef},
-        {page: menuPage, ref: menuRef},
-        {page: aboutPage, ref: aboutRef},
-        {page: visitUsPage, ref: visitUsRef},
-    ]; 
     
     const containerRef = useRef<HTMLDivElement | null>(null); 
 
@@ -34,10 +27,26 @@ export default function Navigation() {
     const [pill, setPill] = useState({
         x: 0, y: 0, width: 0, height: 0,
     }); 
-    
+
+
     useLayoutEffect(() => {
-        const updatePill = () => {
-            const activeRef = pageAndRefList.find(item => item.page === pathName)?.ref.current; 
+        function getActiveRef() {
+            switch (pathName) {
+                case homePage: 
+                    return homeRef.current; 
+                case menuPage: 
+                    return menuRef.current; 
+                case aboutPage: 
+                    return aboutRef.current; 
+                case visitUsPage: 
+                    return visitUsRef.current; 
+                default: 
+                    return null; 
+            }
+        }
+
+        function updatePill() {
+            const activeRef = getActiveRef(); 
 
             if (!activeRef || !containerRef.current) return; 
 
@@ -66,7 +75,7 @@ export default function Navigation() {
 
     return (
         <nav className='min-h-20 flex justify-center bg-surface-background'>
-            <div ref={containerRef} className='m-2 flex-1 flex justify-between max-w-250 relative'>
+            <div ref={containerRef} className='m-2 flex-1 flex justify-between max-w-250 relative animate-gracefulldown'>
                 <div ref={pillRef} className={`
                     bg-surface-brand rounded-2xl 
                     absolute top-0 left-0
@@ -78,8 +87,8 @@ export default function Navigation() {
 
                     transition: 
                         'transform 400ms cubic-bezier(0.22,1,0.36,1), ' +
-                        'width 300ms cubic-bezier(0.22,1,0.36,1) 80ms, ' +
-                        'height 300ms cubic-bezier(0.22,1,0.36,1) 80ms'
+                        'width 300ms cubic-bezier(0.22,1,0.36,1) 50ms, ' +
+                        'height 300ms cubic-bezier(0.22,1,0.36,1) 50ms'
 
                 }} />
                 <div className='mt-auto mb-auto z-10'>
@@ -88,16 +97,16 @@ export default function Navigation() {
                             flex m-auto 
                             text-4xl font-heading
                             pl-3 pr-3 pt-2 pb-2 rounded-2xl 
-                            transition delay-100 ease-in 
-                            ${isHomePage ? 'text-text-on-brand' : 'text-text-primary'}
+                            transition ease-in 
+                            hover:scale-105 active:scale-100
+                            ${isHomePage ? 'text-text-on-brand' : 'text-text-primary hover:bg-surface-hover'}
                         `}
                         
                     >
                         <span className='mt-auto mb-auto mr-1'>Mi Coffee</span>
                         <svg width='50' height='50' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
                             <path d='M10 2v2m4-2v2m2 4a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1M6 2v2' 
-                                className='transition delay-100 ease-in' 
-                                // stroke={'#603e0a'} 
+                                className='transition ease-in' 
                                 stroke={isHomePage ? '#f7deb7' : '#603e0a'} 
                                 strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
                         </svg>
@@ -108,8 +117,9 @@ export default function Navigation() {
                         <Link ref={menuRef} href={menuPage} 
                             className={`
                                 pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
-                                transition delay-100 ease-in 
-                                ${pathName === menuPage ? 'text-text-on-brand' : ''}
+                                transition ease-in 
+                                hover:scale-105 active:scale-100
+                                ${pathName === menuPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
                             `}
                         >Menu</Link>
                     </li>
@@ -117,8 +127,9 @@ export default function Navigation() {
                         <Link ref={aboutRef} href={aboutPage} 
                             className={`
                                 pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
-                                transition delay-100 ease-in 
-                                ${pathName === aboutPage ? 'text-text-on-brand' : ''}
+                                transition ease-in 
+                                hover:scale-105 active:scale-100
+                                ${pathName === aboutPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
                             `}
                         >About</Link>
                     </li>
@@ -126,8 +137,9 @@ export default function Navigation() {
                         <Link ref={visitUsRef} href={visitUsPage} 
                             className={`
                                 pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
-                                transition delay-100 ease-in 
-                                ${pathName === visitUsPage ? 'text-text-on-brand' : ''}
+                                transition ease-in
+                                hover:scale-105 active:scale-100
+                                ${pathName === visitUsPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
                             `}
                         >Visit Us</Link>
                     </li>
@@ -136,15 +148,3 @@ export default function Navigation() {
         </nav>
     ); 
 }
-
-
-/*
-                        ${!isHomePage ? 'hover:bg-surface-hover' : ''}
-                            ${isHomePage ? 'text-text-on-brand bg-surface-brand' : 'text-text-primary'}
-                        */
-
-
-                            /*
-                                        ${!active ? 'hover:bg-surface-hover': ''}
-                                            ${active ? 'text-text-on-brand bg-surface-brand' : ''}
-                                        */
