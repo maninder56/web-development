@@ -4,7 +4,7 @@ import '@/styles/variables.css';
 import { WebsitePages } from '@/types/global';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { act, useLayoutEffect, useRef, useState } from 'react';
 
 export default function Navigation() {
     const pathName = usePathname(); 
@@ -51,8 +51,14 @@ export default function Navigation() {
             const pill = pillRef.current; 
             const activeRef = getActiveRef(); 
 
-            if (!activeRef || !container || !pill) return; 
+            if (!container || !pill) return; 
 
+            if (!activeRef) {
+                pill.style.display = 'none'; 
+                return; 
+            }
+
+            pill.style.display = 'block'; 
             pill.style.transform = `translate(${activeRef.offsetLeft}px, ${activeRef.offsetTop}px)`;
             pill.style.width = `${activeRef.offsetWidth}px`; 
             pill.style.height = `${activeRef.offsetHeight}px`; 
