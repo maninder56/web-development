@@ -19,11 +19,13 @@ export default function Navigation() {
     const homeRef = useRef<HTMLAnchorElement | null>(null); 
     const menuRef = useRef<HTMLAnchorElement | null>(null); 
     const aboutRef = useRef<HTMLAnchorElement | null>(null); 
-    const visitUsRef = useRef<HTMLAnchorElement | null>(null); 
+    const visitUsRef = useRef<HTMLAnchorElement | null>(null);
     
     const containerRef = useRef<HTMLDivElement | null>(null); 
-
     const pillRef = useRef<HTMLDivElement | null>(null); 
+
+    // start instant so first paint is correct
+    const [instant, setInstant] = useState(true); 
 
     useLayoutEffect(() => {
 
@@ -49,26 +51,22 @@ export default function Navigation() {
 
             if (!activeRef || !container || !pill) return; 
 
-            const containerRect = container.getBoundingClientRect(); 
-            const activeRect = activeRef.getBoundingClientRect(); 
-
-            pill.style.transform = `
-                translate(
-                    ${activeRect.left - containerRect.left}px, 
-                    ${activeRect.top - containerRect.top}px
-                )
-            `; 
-
-            pill.style.width = `${activeRect.width}px`; 
-            pill.style.height = `${activeRect.height}px`; 
+            pill.style.transform = `translate(${activeRef.offsetLeft}px, ${activeRef.offsetTop}px)`;
+            pill.style.width = `${activeRef.offsetWidth}px`; 
+            pill.style.height = `${activeRef.offsetHeight}px`; 
         }
 
         updatePill(); 
 
-        const observer = new ResizeObserver(() => {
-           
-            updatePill(); 
+        let resizeTimeout: ReturnType<typeof setTimeout>; 
 
+        const observer = new ResizeObserver(() => {
+            setInstant(true);  // kill transition so pill doesn't lag behind
+            updatePill(); 
+            clearTimeout(resizeTimeout); 
+            resizeTimeout = setTimeout(() => {
+                setInstant(false)
+            }, 200);
         }); 
 
         if (containerRef.current) {
@@ -79,15 +77,20 @@ export default function Navigation() {
     },[pathName]); 
 
 
+    // after the very first paint, allow transitions for route changes
+    useLayoutEffect(() => {
+        const id = requestAnimationFrame(() => setInstant(false));
+        return () => cancelAnimationFrame(id);
+    }, []);
+
+
     return (
         <nav className='min-h-20 flex justify-center bg-surface-background'>
             <div ref={containerRef} className='m-2 flex-1 flex justify-between max-w-250 relative animate-gracefulldown'>
                 <div ref={pillRef} className={`
                     bg-surface-brand rounded-2xl 
                     absolute top-0 left-0
-                    transition-[transform,width,height]
-                    duration-300 delay-50
-                    ease-[cubic-bezier(0.22,1,0.36,1)]
+                    ${instant ? '' : 'transition-[transform,width,height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]'}
                 `} />
                 <div className='mt-auto mb-auto z-10'>
                     <Link ref={homeRef} href={homePage} 
