@@ -27,6 +27,8 @@ export default function Navigation() {
     // start instant so first paint is correct
     const [instant, setInstant] = useState(true); 
 
+    const [firstRender, setFirstRender] = useState(true); 
+
     useLayoutEffect(() => {
 
         function getActiveRef() {
@@ -57,6 +59,9 @@ export default function Navigation() {
         }
 
         updatePill(); 
+        setTimeout(() => {
+            setFirstRender(false); 
+        }, 200);
 
         let resizeTimeout: ReturnType<typeof setTimeout>; 
 
@@ -86,7 +91,7 @@ export default function Navigation() {
 
     return (
         <nav className='min-h-20 flex justify-center bg-surface-background'>
-            <div ref={containerRef} className='m-2 flex-1 flex justify-between max-w-250 relative animate-gracefulldown'>
+            <div ref={containerRef} className='m-2 flex-1 flex justify-between max-w-250 relative animate-reveal-drop'>
                 <div ref={pillRef} className={`
                     bg-surface-brand rounded-2xl 
                     absolute top-0 left-0
@@ -99,8 +104,9 @@ export default function Navigation() {
                             text-4xl font-heading
                             pl-3 pr-3 pt-2 pb-2 rounded-2xl 
                             transition ease-in 
-                            hover:scale-105 active:scale-100
+                            hover:scale-105 active:scale-95
                             ${isHomePage ? 'text-text-on-brand' : 'text-text-primary hover:bg-surface-hover'}
+                            ${firstRender && isHomePage? 'bg-surface-brand' : ''}
                         `}
                         
                     >
@@ -119,8 +125,9 @@ export default function Navigation() {
                             className={`
                                 pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
                                 transition ease-in 
-                                hover:scale-105 active:scale-100
+                                hover:scale-105 active:scale-95
                                 ${pathName === menuPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
+                                ${firstRender && pathName === menuPage ? 'bg-surface-brand' : ''}
                             `}
                         >Menu</Link>
                     </li>
@@ -129,8 +136,9 @@ export default function Navigation() {
                             className={`
                                 pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
                                 transition ease-in 
-                                hover:scale-105 active:scale-100
+                                hover:scale-105 active:scale-95
                                 ${pathName === aboutPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
+                                ${firstRender && pathName === aboutPage ? 'bg-surface-brand' : ''}
                             `}
                         >About</Link>
                     </li>
@@ -138,9 +146,10 @@ export default function Navigation() {
                         <Link ref={visitUsRef} href={visitUsPage} 
                             className={`
                                 pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
-                                transition ease-in
-                                hover:scale-105 active:scale-100
+                                transition ease-in 
+                                hover:scale-105 active:scale-95
                                 ${pathName === visitUsPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
+                                ${firstRender && pathName === visitUsPage ? 'bg-surface-brand' : ''}
                             `}
                         >Visit Us</Link>
                     </li>

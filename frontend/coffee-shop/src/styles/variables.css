@@ -71,13 +71,18 @@
 
 
     /* Animation */
-    --animate-gracefulldown: gracefulldown 0.5s ease-out 0s forwards; 
+    --animate-reveal-drop: reveal-drop 0.5s ease-out forwards;
 
-    @keyframes gracefulldown {
+    @keyframes reveal-drop {
         0% {
             opacity: 0;
-            transform: translateY(-50px); 
+            transform: translateY(-5px); 
         }
+
+        50% {
+            opacity: 0.2;
+        }
+
         100% {
             opacity: 1;
             transform: translateY(0px); 
