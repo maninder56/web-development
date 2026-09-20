@@ -50,7 +50,7 @@
 
     /* Text */
     --color-text-primary: var(--color-brand-900);
-    --color-text-secondary: var(--color-brand-700);
+    --color-text-secondary: var(--color-brand-800);
     --color-text-negative: var(--color-error-400);
     --color-text-positive: var(--color-success-400);
     --color-text-on-brand: var(--color-brand-100);

@@ -97,7 +97,7 @@ export default function Navigation() {
 
     return (
         <nav className='min-h-20 flex justify-center bg-surface-background'>
-            <div ref={containerRef} className='m-2 flex-1 flex justify-between max-w-250 relative animate-reveal-drop'>
+            <div ref={containerRef} className='m-4 flex-1 flex justify-between max-w-6xl relative animate-reveal-drop'>
                 <div ref={pillRef} className={`
                     bg-surface-brand rounded-2xl 
                     absolute top-0 left-0
