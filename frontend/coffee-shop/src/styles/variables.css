@@ -62,6 +62,7 @@
 
     /* Interactive surface */
     --color-surface-hover: var(--color-brand-100); 
+    --color-surface-button-hover: var(--color-accent-900); 
 
     /* Border */
     --color-border-primary: var(--color-brand-800);
