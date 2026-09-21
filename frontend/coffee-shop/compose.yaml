@@ -16,6 +16,8 @@ services:
     container_name: coffee-shop-dev
     ports:
       - "3000:3000"
+    volumes:
+      - ./certificates:/app/certificates:ro
     develop:
       watch:
         - path: . 
