@@ -7,6 +7,72 @@ import { usePathname } from 'next/navigation';
 import { act, useLayoutEffect, useRef, useState } from 'react';
 
 export default function Navigation() {
+    return (
+        <nav className='min-h-20 animate-reveal-drop'>
+            <div className='sm:hidden'>
+                <MobileNavigation />
+            </div>
+            <div className='hidden sm:flex justify-center'>
+                <DesktopNavigation />
+            </div>
+        </nav>
+    ); 
+}
+
+function MobileNavigation() {
+    const homePage: WebsitePages = '/'; 
+    const menuPage: WebsitePages = '/menu';
+    const aboutPage: WebsitePages = '/about'; 
+    const visitUsPage: WebsitePages = '/visitus'; 
+
+    const [isNavOpen, setIsNavOpen] = useState(false); 
+
+    return (
+        <div className='m-2 flex justify-between'>
+            <Link href={homePage} 
+                className={` 
+                    flex 
+                    text-lg sm:text-2xl md:text-3xl lg:text-4xl font-heading text-text-on-brand
+                    px-3 py-2 rounded-2xl 
+                    transition ease-in 
+                    hover:scale-105 active:scale-95
+                    bg-surface-brand
+                `}
+                
+            >
+                <span className='mt-auto mb-auto mr-1 text-nowrap'>Mi Coffee</span>
+                <svg viewBox='0 0 24 24' fill='none' 
+                    className='m-auto w-8 md:w-10 lg:w-12'>
+                    <path d='M10 2v2m4-2v2m2 4a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1M6 2v2' 
+                        className='transition ease-in' 
+                        stroke={'#f7deb7'} 
+                        strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
+                </svg>
+            </Link>
+            <button type='button'
+                onClick={() => setIsNavOpen(!isNavOpen)}
+                className='my-auto border-red-600 border-2 w-[30px] h-[30px] relative'>
+                <span className={`
+                    absolute left-1/2 top-1/2 h-0.5 w-5 
+                    origin-center -translate-x-1/2 -translate-y-1/2
+                    rounded-full bg-current
+                    transition-transform duration-300
+                    ${isNavOpen ? "rotate-45" : "-translate-y-1.75"}`}
+                />
+
+                <span className={`
+                    absolute left-1/2 top-1/2 h-0.5 w-5 
+                    origin-center -translate-x-1/2 -translate-y-1/2
+                    rounded-full bg-current
+                    transition-transform duration-300
+                    ${isNavOpen ? "-rotate-45" : "translate-y-1.75"}`}
+                />
+            </button>
+        </div>
+    ); 
+}
+
+function DesktopNavigation(){
     const pathName = usePathname(); 
 
     const homePage: WebsitePages = '/'; 
@@ -96,76 +162,74 @@ export default function Navigation() {
 
 
     return (
-        <nav className='min-h-20 flex justify-center bg-surface-background'>
-            <div ref={containerRef} className='m-1 sm:m-2 md:m-4 flex-1 flex justify-between max-w-6xl relative animate-reveal-drop'>
-                <div ref={pillRef} className={`
-                    bg-surface-brand rounded-2xl 
-                    absolute top-0 left-0
-                    ${instant ? '' : 'transition-[transform,width,height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]'}
-                `} />
-                <div className='mt-auto mb-auto z-10'>
-                    <Link ref={homeRef} href={homePage} 
+        <div ref={containerRef} className='m-2 md:m-4 flex-1 flex justify-between max-w-6xl relative'>
+            <div ref={pillRef} className={`
+                bg-surface-brand rounded-2xl 
+                absolute top-0 left-0
+                ${instant ? '' : 'transition-[transform,width,height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]'}
+            `} />
+            <div className='mt-auto mb-auto z-10'>
+                <Link ref={homeRef} href={homePage} 
+                    className={`
+                        flex m-auto 
+                        text-lg sm:text-2xl md:text-3xl lg:text-4xl font-heading
+                        px-3 py-2 rounded-2xl 
+                        transition ease-in 
+                        hover:scale-105 active:scale-95
+                        ${isHomePage ? 'text-text-on-brand' : 'text-text-primary hover:bg-surface-hover'}
+                        ${firstRender && isHomePage? 'bg-surface-brand' : ''}
+                    `}
+                    
+                >
+                    <span className='mt-auto mb-auto mr-1 text-nowrap'>Mi Coffee</span>
+                    <svg viewBox='0 0 24 24' fill='none' 
+                        className='m-auto w-8 md:w-10 lg:w-12'>
+                        <path d='M10 2v2m4-2v2m2 4a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1M6 2v2' 
+                            className='transition ease-in' 
+                            stroke={isHomePage ? '#f7deb7' : '#603e0a'} 
+                            strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
+                    </svg>
+                </Link>
+            </div>
+            <ul className='
+                max-w-2xs md:max-w-sm lg:max-w-md
+                flex-1 flex justify-between 
+                font-heading text-text-primary
+                text-lg md:text-2xl lg:text-3xl'>
+                <li className='flex mt-auto mb-auto'>
+                    <Link ref={menuRef} href={menuPage} 
                         className={`
-                            flex m-auto 
-                            text-lg sm:text-2xl md:text-3xl lg:text-4xl font-heading
-                            px-3 py-2 rounded-2xl 
+                            px-3 py-1 rounded-2xl z-10
                             transition ease-in 
                             hover:scale-105 active:scale-95
-                            ${isHomePage ? 'text-text-on-brand' : 'text-text-primary hover:bg-surface-hover'}
-                            ${firstRender && isHomePage? 'bg-surface-brand' : ''}
+                            ${pathName === menuPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
+                            ${firstRender && pathName === menuPage ? 'bg-surface-brand' : ''}
                         `}
-                        
-                    >
-                        <span className='mt-auto mb-auto mr-1 text-nowrap'>Mi Coffee</span>
-                        <svg viewBox='0 0 24 24' fill='none' 
-                            className='m-auto w-8 md:w-10 lg:w-12'>
-                            <path d='M10 2v2m4-2v2m2 4a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1M6 2v2' 
-                                className='transition ease-in' 
-                                stroke={isHomePage ? '#f7deb7' : '#603e0a'} 
-                                strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
-                        </svg>
-                    </Link>
-                </div>
-                <ul className='
-                    max-w-2xs md:max-w-sm lg:max-w-md
-                    flex-1 flex justify-between 
-                    font-heading text-text-primary
-                    text-lg md:text-2xl lg:text-3xl'>
-                    <li className='flex mt-auto mb-auto'>
-                        <Link ref={menuRef} href={menuPage} 
-                            className={`
-                                px-3 py-1 rounded-2xl z-10
-                                transition ease-in 
-                                hover:scale-105 active:scale-95
-                                ${pathName === menuPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
-                                ${firstRender && pathName === menuPage ? 'bg-surface-brand' : ''}
-                            `}
-                        >Menu</Link>
-                    </li>
-                    <li className='flex mt-auto mb-auto'>
-                        <Link ref={aboutRef} href={aboutPage} 
-                            className={`
-                                px-3 py-1 rounded-2xl z-10
-                                transition ease-in 
-                                hover:scale-105 active:scale-95
-                                ${pathName === aboutPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
-                                ${firstRender && pathName === aboutPage ? 'bg-surface-brand' : ''}
-                            `}
-                        >About</Link>
-                    </li>
-                    <li className='flex mt-auto mb-auto'>
-                        <Link ref={visitUsRef} href={visitUsPage} 
-                            className={`
-                                px-3 py-1 rounded-2xl z-10
-                                transition ease-in 
-                                hover:scale-105 active:scale-95
-                                ${pathName === visitUsPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
-                                ${firstRender && pathName === visitUsPage ? 'bg-surface-brand' : ''}
-                            `}
-                        >Visit Us</Link>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                    >Menu</Link>
+                </li>
+                <li className='flex mt-auto mb-auto'>
+                    <Link ref={aboutRef} href={aboutPage} 
+                        className={`
+                            px-3 py-1 rounded-2xl z-10
+                            transition ease-in 
+                            hover:scale-105 active:scale-95
+                            ${pathName === aboutPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
+                            ${firstRender && pathName === aboutPage ? 'bg-surface-brand' : ''}
+                        `}
+                    >About</Link>
+                </li>
+                <li className='flex mt-auto mb-auto'>
+                    <Link ref={visitUsRef} href={visitUsPage} 
+                        className={`
+                            px-3 py-1 rounded-2xl z-10
+                            transition ease-in 
+                            hover:scale-105 active:scale-95
+                            ${pathName === visitUsPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
+                            ${firstRender && pathName === visitUsPage ? 'bg-surface-brand' : ''}
+                        `}
+                    >Visit Us</Link>
+                </li>
+            </ul>
+        </div>
     ); 
 }
