@@ -51,22 +51,30 @@ function MobileNavigation() {
             </Link>
             <button type='button'
                 onClick={() => setIsNavOpen(!isNavOpen)}
-                className='my-auto border-red-600 border-2 w-[30px] h-[30px] relative'>
+                className='my-auto w-10 h-10 relative'>
                 <span className={`
-                    absolute left-1/2 top-1/2 h-0.5 w-5 
+                    absolute left-1/2 top-1/2 h-0.5 w-6
                     origin-center -translate-x-1/2 -translate-y-1/2
-                    rounded-full bg-current
+                    rounded-full bg-surface-brand
                     transition-transform duration-300
-                    ${isNavOpen ? "rotate-45" : "-translate-y-1.75"}`}
-                />
+                    ${isNavOpen ? 'rotate-45' : '-translate-y-2'}
+                `}/>
 
                 <span className={`
-                    absolute left-1/2 top-1/2 h-0.5 w-5 
+                    absolute left-1/2 top-1/2 h-0.5 w-6
                     origin-center -translate-x-1/2 -translate-y-1/2
-                    rounded-full bg-current
+                    rounded-full bg-surface-brand
+                    duration-100 transition-all
+                    ${isNavOpen ? ' opacity-0' : 'opacity-100'}
+                `}/>
+
+                <span className={`
+                    absolute left-1/2 top-1/2 h-0.5 w-6
+                    origin-center -translate-x-1/2 -translate-y-1/2
+                    rounded-full bg-surface-brand
                     transition-transform duration-300
-                    ${isNavOpen ? "-rotate-45" : "translate-y-1.75"}`}
-                />
+                    ${isNavOpen ? '-rotate-45' : 'translate-y-1.75'}
+                `}/>
             </button>
         </div>
     ); 
