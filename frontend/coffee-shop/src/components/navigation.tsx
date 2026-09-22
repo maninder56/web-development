@@ -97,7 +97,7 @@ export default function Navigation() {
 
     return (
         <nav className='min-h-20 flex justify-center bg-surface-background'>
-            <div ref={containerRef} className='m-4 flex-1 flex justify-between max-w-6xl relative animate-reveal-drop'>
+            <div ref={containerRef} className='m-1 sm:m-2 md:m-4 flex-1 flex justify-between max-w-6xl relative animate-reveal-drop'>
                 <div ref={pillRef} className={`
                     bg-surface-brand rounded-2xl 
                     absolute top-0 left-0
@@ -107,8 +107,8 @@ export default function Navigation() {
                     <Link ref={homeRef} href={homePage} 
                         className={`
                             flex m-auto 
-                            text-4xl font-heading
-                            pl-3 pr-3 pt-2 pb-2 rounded-2xl 
+                            text-lg sm:text-2xl md:text-3xl lg:text-4xl font-heading
+                            px-3 py-2 rounded-2xl 
                             transition ease-in 
                             hover:scale-105 active:scale-95
                             ${isHomePage ? 'text-text-on-brand' : 'text-text-primary hover:bg-surface-hover'}
@@ -116,8 +116,9 @@ export default function Navigation() {
                         `}
                         
                     >
-                        <span className='mt-auto mb-auto mr-1'>Mi Coffee</span>
-                        <svg width='50' height='50' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                        <span className='mt-auto mb-auto mr-1 text-nowrap'>Mi Coffee</span>
+                        <svg viewBox='0 0 24 24' fill='none' 
+                            className='m-auto w-8 md:w-10 lg:w-12'>
                             <path d='M10 2v2m4-2v2m2 4a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1M6 2v2' 
                                 className='transition ease-in' 
                                 stroke={isHomePage ? '#f7deb7' : '#603e0a'} 
@@ -125,11 +126,15 @@ export default function Navigation() {
                         </svg>
                     </Link>
                 </div>
-                <ul className='max-w-100 flex-1 flex justify-between text-3xl font-heading text-text-primary'>
+                <ul className='
+                    max-w-2xs md:max-w-sm lg:max-w-md
+                    flex-1 flex justify-between 
+                    font-heading text-text-primary
+                    text-lg md:text-2xl lg:text-3xl'>
                     <li className='flex mt-auto mb-auto'>
                         <Link ref={menuRef} href={menuPage} 
                             className={`
-                                pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
+                                px-3 py-1 rounded-2xl z-10
                                 transition ease-in 
                                 hover:scale-105 active:scale-95
                                 ${pathName === menuPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
@@ -140,7 +145,7 @@ export default function Navigation() {
                     <li className='flex mt-auto mb-auto'>
                         <Link ref={aboutRef} href={aboutPage} 
                             className={`
-                                pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
+                                px-3 py-1 rounded-2xl z-10
                                 transition ease-in 
                                 hover:scale-105 active:scale-95
                                 ${pathName === aboutPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}
@@ -151,7 +156,7 @@ export default function Navigation() {
                     <li className='flex mt-auto mb-auto'>
                         <Link ref={visitUsRef} href={visitUsPage} 
                             className={`
-                                pl-3 pr-3 pt-1 pb-1 rounded-2xl z-10
+                                px-3 py-1 rounded-2xl z-10
                                 transition ease-in 
                                 hover:scale-105 active:scale-95
                                 ${pathName === visitUsPage ? 'text-text-on-brand' : 'hover:bg-surface-hover'}

@@ -1,6 +1,7 @@
 
 import PrimaryButton from '@/components/ui/primaryButton';
 import '@/styles/variables.css'; 
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -22,7 +23,9 @@ export default function Home() {
             </PrimaryButton>
           </div>
         </div>
-        <div>Photo</div>
+        <div className='flex justify-center'>
+          <Image className='max-w-5xl rounded-3xl' src={'/pictures/coffeeCup.png'} width={1440} height={681} alt='Coffee picture' />
+        </div>
         <div>Cards</div>
       </section>
     </div>
