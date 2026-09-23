@@ -22,7 +22,7 @@ export default function RootLayout({
       lang="en"
       className={`${cause.variable} ${naumGothic.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-surface-background overflow-hidden">
+      <body className="min-h-full flex flex-col bg-surface-background">
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />

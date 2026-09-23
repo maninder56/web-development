@@ -9,10 +9,10 @@ import { act, useLayoutEffect, useRef, useState } from 'react';
 export default function Navigation() {
     return (
         <nav className='min-h-20'>
-            <div className='sm:hidden animate-reveal-drop'>
+            <div className='sm:hidden'>
                 <MobileNavigation />
             </div>
-            <div className='hidden sm:flex justify-center animate-reveal-drop'>
+            <div className='hidden sm:flex justify-center'>
                 <DesktopNavigation />
             </div>
         </nav>
@@ -38,6 +38,8 @@ function MobileNavigation() {
                     transition ease-in 
                     hover:scale-105 active:scale-95
                     bg-surface-brand
+                    animate-reveal-drop
+
             `}>
                 <span className='mt-auto mb-auto mr-1 text-nowrap'>Mi Coffee</span>
                 <svg viewBox='0 0 24 24' fill='none' 
@@ -50,7 +52,7 @@ function MobileNavigation() {
             </Link>
             <button type='button'
                 onClick={() => setIsNavOpen(!isNavOpen)}
-                className='my-auto w-10 h-10 relative z-10 min-w-0'>
+                className='my-auto min-w-0 w-10 h-10 relative z-20 animate-reveal-drop'>
                 <span className={`
                     absolute left-1/2 top-1/2 h-0.5 w-6
                     origin-center -translate-x-1/2 -translate-y-1/2
@@ -75,8 +77,8 @@ function MobileNavigation() {
                     ${isNavOpen ? '-rotate-45' : 'translate-y-2'}
                 `}/>
             </button>
-            <nav className={`
-                fixed inset-0
+            <div className={`
+                fixed inset-0 z-10
                 w-screen h-screen
                 bg-surface-primary
                 transition-transform duration-300
@@ -112,7 +114,7 @@ function MobileNavigation() {
                         >Visit Us</Link>
                     </li>
                 </ul>
-            </nav>
+            </div>
         </div>
     ); 
 }
@@ -207,7 +209,7 @@ function DesktopNavigation(){
 
 
     return (
-        <div ref={containerRef} className='m-2 md:m-4 flex-1 flex justify-between max-w-6xl relative'>
+        <div ref={containerRef} className='m-2 md:m-4 flex-1 flex justify-between max-w-6xl relative animate-reveal-drop'>
             <div ref={pillRef} className={`
                 bg-surface-brand rounded-2xl 
                 absolute top-0 left-0
