@@ -9,6 +9,10 @@
   border: solid 1px red;
 } */
 
+.applyBorders * {
+  border: solid 1px red;
+}
+
 
 
 body {

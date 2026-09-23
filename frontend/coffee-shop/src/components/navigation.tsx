@@ -28,18 +28,17 @@ function MobileNavigation() {
     const [isNavOpen, setIsNavOpen] = useState(false); 
 
     return (
-        <div className='m-2 flex justify-between'>
+        <div className='p-2 flex justify-between'>
             <Link href={homePage} 
                 className={` 
                     flex 
-                    text-lg sm:text-2xl md:text-3xl lg:text-4xl font-heading text-text-on-brand
+                    text-2xl
+                    font-heading text-text-on-brand
                     px-3 py-2 rounded-2xl 
                     transition ease-in 
                     hover:scale-105 active:scale-95
                     bg-surface-brand
-                `}
-                
-            >
+            `}>
                 <span className='mt-auto mb-auto mr-1 text-nowrap'>Mi Coffee</span>
                 <svg viewBox='0 0 24 24' fill='none' 
                     className='m-auto w-8 md:w-10 lg:w-12'>
@@ -51,13 +50,13 @@ function MobileNavigation() {
             </Link>
             <button type='button'
                 onClick={() => setIsNavOpen(!isNavOpen)}
-                className='my-auto w-10 h-10 relative'>
+                className='my-auto w-10 h-10 relative z-10 min-w-0'>
                 <span className={`
                     absolute left-1/2 top-1/2 h-0.5 w-6
                     origin-center -translate-x-1/2 -translate-y-1/2
                     rounded-full bg-surface-brand
                     transition-transform duration-300
-                    ${isNavOpen ? 'rotate-45' : '-translate-y-2'}
+                    ${isNavOpen ? 'rotate-45' : '-translate-y-2.5'}
                 `}/>
 
                 <span className={`
@@ -73,9 +72,47 @@ function MobileNavigation() {
                     origin-center -translate-x-1/2 -translate-y-1/2
                     rounded-full bg-surface-brand
                     transition-transform duration-300
-                    ${isNavOpen ? '-rotate-45' : 'translate-y-1.75'}
+                    ${isNavOpen ? '-rotate-45' : 'translate-y-2'}
                 `}/>
             </button>
+            <div className={`
+                fixed inset-0 
+                w-screen h-screen
+                bg-surface-primary
+                transition-transform duration-300
+                ${isNavOpen ? 'translate-x-0' : 'translate-x-full'}
+            `}>
+                <ul className={`
+                    m-4 mt-30
+                    flex flex-col gap-12
+                    font-heading text-text-primary text-2xl
+                `}>
+                    <li className='flex justify-center'>
+                        <Link href={menuPage} 
+                            onClick={() => setIsNavOpen(false)}
+                            className={`
+                                px-3 py-1
+                            `}
+                        >Menu</Link>
+                    </li>
+                    <li className='flex justify-center'>
+                        <Link href={aboutPage} 
+                            onClick={() => setIsNavOpen(false)}
+                            className={`
+                                px-3 py-1
+                            `}
+                        >About</Link>
+                    </li>
+                    <li className='flex justify-center'>
+                        <Link href={visitUsPage} 
+                            onClick={() => setIsNavOpen(false)}
+                            className={`
+                                px-3 py-1
+                            `}
+                        >Visit Us</Link>
+                    </li>
+                </ul>
+            </div>
         </div>
     ); 
 }
@@ -180,7 +217,7 @@ function DesktopNavigation(){
                 <Link ref={homeRef} href={homePage} 
                     className={`
                         flex m-auto 
-                        text-lg sm:text-2xl md:text-3xl lg:text-4xl font-heading
+                        text-3xl lg:text-4xl font-heading
                         px-3 py-2 rounded-2xl 
                         transition ease-in 
                         hover:scale-105 active:scale-95
@@ -199,11 +236,11 @@ function DesktopNavigation(){
                     </svg>
                 </Link>
             </div>
-            <ul className='
-                max-w-2xs md:max-w-sm lg:max-w-md
+            <ul className={`
+                max-w-sm lg:max-w-md
                 flex-1 flex justify-between 
                 font-heading text-text-primary
-                text-lg md:text-2xl lg:text-3xl'>
+                text-2xl lg:text-3xl`}>
                 <li className='flex mt-auto mb-auto'>
                     <Link ref={menuRef} href={menuPage} 
                         className={`
