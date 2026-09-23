@@ -8,11 +8,11 @@ import { act, useLayoutEffect, useRef, useState } from 'react';
 
 export default function Navigation() {
     return (
-        <nav className='min-h-20 animate-reveal-drop'>
-            <div className='sm:hidden'>
+        <nav className='min-h-20'>
+            <div className='sm:hidden animate-reveal-drop'>
                 <MobileNavigation />
             </div>
-            <div className='hidden sm:flex justify-center'>
+            <div className='hidden sm:flex justify-center animate-reveal-drop'>
                 <DesktopNavigation />
             </div>
         </nav>
@@ -75,8 +75,8 @@ function MobileNavigation() {
                     ${isNavOpen ? '-rotate-45' : 'translate-y-2'}
                 `}/>
             </button>
-            <div className={`
-                fixed inset-0 
+            <nav className={`
+                fixed inset-0
                 w-screen h-screen
                 bg-surface-primary
                 transition-transform duration-300
@@ -112,7 +112,7 @@ function MobileNavigation() {
                         >Visit Us</Link>
                     </li>
                 </ul>
-            </div>
+            </nav>
         </div>
     ); 
 }

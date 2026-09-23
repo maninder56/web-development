@@ -32,7 +32,7 @@ export default function Footer() {
                     </Link>
                 </div>
                  <ul className={`
-                    flex justify-between gap-1 sm:gap-3
+                    flex justify-between gap-1 sm:gap-20 min-[425px]:mr-10
                     text-md sm:text-xl
                     font-heading text-text-primary
                 `}>
