@@ -23,8 +23,13 @@ export default function Home() {
             </PrimaryButton>
           </div>
         </div>
-        <div className='flex justify-center relative h-[500px] overflow-hidden'>
-          <Image className='max-w-5xl rounded-3xl h-full w-full object-cover scale-125 md:scale-100' src={'/pictures/coffeeCup.png'} width={1440} height={681} alt='Coffee picture' />
+        <div className='flex justify-center relative'>
+          <Image className={`
+            max-w-5xl h-200 w-full
+            object-cover
+            rounded-xl sm:rounded-2xl 
+          `} 
+            src={'/pictures/test1.avif'} width={1287} height={1931} alt='Coffee picture' />
         </div>
         {/* <div>Cards</div> */}
       </section>
