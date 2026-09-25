@@ -1,4 +1,5 @@
 
+import FlipCard from '@/components/ui/flipCard';
 import PrimaryButton from '@/components/ui/primaryButton';
 import '@/styles/variables.css'; 
 import Image from 'next/image';
@@ -32,8 +33,15 @@ export default function Home() {
             src={'/pictures/coffeeCup.avif'} width={1287} height={1931} alt='Coffee picture' />
         </div>
         <div className='mt-4 flex justify-center apply-borders'>
-          <div className='max-w-5xl flex-1'>
-            Cards
+          <div className='max-w-5xl flex-1 flex'>
+            <FlipCard 
+              front={
+                <div>Front</div>
+              } 
+              back={
+                <div>Back</div>
+              }>
+            </FlipCard>
           </div>
         </div>
       </section>
