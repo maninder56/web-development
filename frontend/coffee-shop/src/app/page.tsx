@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <div className='m-1 mt-4 sm:m-4 md:m-8'>
+    <div className='m-1 mt-4 sm:m-4 md:m-8 transition-[margin] duration-500 ease-in-out'>
       <section className='animate-reveal-drop'>
         <div className='flex justify-center mb-4'>
           <div className='flex-1 max-w-5xl flex flex-col sm:flex-row justify-between'>
@@ -25,13 +25,17 @@ export default function Home() {
         </div>
         <div className='flex justify-center relative'>
           <Image className={`
-            max-w-5xl h-200 w-full
-            object-cover
+            max-w-5xl h-150 sm:h-200 w-full object-cover
+            transition-all duration-500 ease-in-out
             rounded-xl sm:rounded-2xl 
           `} 
-            src={'/pictures/test1.avif'} width={1287} height={1931} alt='Coffee picture' />
+            src={'/pictures/coffeeCup.avif'} width={1287} height={1931} alt='Coffee picture' />
         </div>
-        {/* <div>Cards</div> */}
+        <div className='mt-4 flex justify-center apply-borders'>
+          <div className='max-w-5xl flex-1'>
+            Cards
+          </div>
+        </div>
       </section>
     </div>
   );
