@@ -1,5 +1,6 @@
 
-import FlipCard from '@/components/ui/flipCard';
+
+import InfoCard from '@/components/ui/infoCard';
 import PrimaryButton from '@/components/ui/primaryButton';
 import '@/styles/variables.css'; 
 import Image from 'next/image';
@@ -7,7 +8,7 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <div className='m-1 mt-4 sm:m-4 md:m-8 transition-[margin] duration-500 ease-in-out'>
-      <section className='animate-reveal-drop'>
+      <section className=''>
         <div className='flex justify-center mb-4'>
           <div className='flex-1 max-w-5xl flex flex-col sm:flex-row justify-between'>
             <div className='m-auto sm:m-0 sm:mr-2 max-w-xl text-center sm:text-start'>
@@ -33,15 +34,91 @@ export default function Home() {
             src={'/pictures/coffeeCup.avif'} width={1287} height={1931} alt='Coffee picture' />
         </div>
         <div className='mt-4 flex justify-center apply-borders'>
-          <div className='max-w-5xl flex-1 flex'>
-            <FlipCard 
-              front={
-                <div>Front</div>
+          <div className='max-w-5xl flex-1 flex flex-col items-center sm:flex-row'>
+            <InfoCard className='m-2 h-full w-3/4' 
+              face={
+                <div className='h-full p-2 flex'>
+                  <div className='my-auto'>
+                    <svg className='w-7' viewBox='0 0 24 24' fill='none'>
+                      <path d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10m0-6v-4m0-4h.01' 
+                        stroke='#7f3e0d' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
+                    </svg>
+                    <h2 className='font-heading font-medium text-2xl md:text-3xl text-text-primary'>Coffee info</h2>
+                    <p className='font-body font-medium text-base md:text-lg text-text-secondary'>Discover what makes every cup unique.</p>
+                  </div>
+                </div>
               } 
-              back={
-                <div>Back</div>
-              }>
-            </FlipCard>
+              cardDetails={
+                <div className='p-4 flex'>
+                  <div className='flex-1'>
+                    <h2 className='mb-4 font-heading font-medium text-2xl md:text-3xl text-text-primary text-center'>
+                      Coffee info
+                    </h2>
+                    <div className='font-body font-medium text-base md:text-lg text-text-secondary text-center'>
+                      <p className='mb-2'>Coffee begins with the beans, and every bean has its own character. Where it is grown can influence its aroma, acidity, and flavour. The way the coffee is processed also changes how it tastes.</p>
+                      <p className='mb-2'>Some coffees can be bright and fruity, while others are rich and chocolatey. Roasting brings out different flavours and aromas from the beans. A lighter roast often keeps more of the bean&apos;s original character.</p>
+                      <p className='mb-2'>A darker roast creates deeper, bolder and more roasted flavours. Grinding the beans correctly is important for a balanced cup. The brewing method then brings all these flavours together. Every step plays a part in creating the coffee you enjoy.</p>
+                    </div>
+                  </div>
+                </div>
+              } 
+            />
+            <InfoCard className='w-full h-full mx-4' 
+              face={
+                <div className='h-full p-2 flex'>
+                  <div className='my-auto'>
+                    <svg className='w-7' viewBox='0 0 24 24' fill='none'>
+                      <path d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10m0-6v-4m0-4h.01' 
+                        stroke='#7f3e0d' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
+                    </svg>
+                    <h2 className='font-heading font-medium text-2xl md:text-3xl text-text-primary'>Coffee info</h2>
+                    <p className='font-body font-medium text-base md:text-lg text-text-secondary'>Discover what makes every cup unique.</p>
+                  </div>
+                </div>
+              } 
+              cardDetails={
+                <div className='p-4 flex'>
+                  <div className='flex-1'>
+                    <h2 className='mb-4 font-heading font-medium text-2xl md:text-3xl text-text-primary text-center'>
+                      Coffee info
+                    </h2>
+                    <div className='font-body font-medium text-base md:text-lg text-text-secondary text-center'>
+                      <p className='mb-2'>Coffee begins with the beans, and every bean has its own character. Where it is grown can influence its aroma, acidity, and flavour. The way the coffee is processed also changes how it tastes.</p>
+                      <p className='mb-2'>Some coffees can be bright and fruity, while others are rich and chocolatey. Roasting brings out different flavours and aromas from the beans. A lighter roast often keeps more of the bean&apos;s original character.</p>
+                      <p className='mb-2'>A darker roast creates deeper, bolder and more roasted flavours. Grinding the beans correctly is important for a balanced cup. The brewing method then brings all these flavours together. Every step plays a part in creating the coffee you enjoy.</p>
+                    </div>
+                  </div>
+                </div>
+              } 
+            />
+            <InfoCard className='w-full h-full mx-4' 
+              face={
+                <div className='h-full p-2 flex'>
+                  <div className='my-auto'>
+                    <svg className='w-7' viewBox='0 0 24 24' fill='none'>
+                      <path d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10m0-6v-4m0-4h.01' 
+                        stroke='#7f3e0d' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
+                    </svg>
+                    <h2 className='font-heading font-medium text-2xl md:text-3xl text-text-primary'>Coffee info</h2>
+                    <p className='font-body font-medium text-base md:text-lg text-text-secondary'>Discover what makes every cup unique.</p>
+                  </div>
+                </div>
+              } 
+              cardDetails={
+                <div className='p-4 flex'>
+                  <div className='flex-1'>
+                    <h2 className='mb-4 font-heading font-medium text-2xl md:text-3xl text-text-primary text-center'>
+                      Coffee info
+                    </h2>
+                    <div className='font-body font-medium text-base md:text-lg text-text-secondary text-center'>
+                      <p className='mb-2'>Coffee begins with the beans, and every bean has its own character. Where it is grown can influence its aroma, acidity, and flavour. The way the coffee is processed also changes how it tastes.</p>
+                      <p className='mb-2'>Some coffees can be bright and fruity, while others are rich and chocolatey. Roasting brings out different flavours and aromas from the beans. A lighter roast often keeps more of the bean&apos;s original character.</p>
+                      <p className='mb-2'>A darker roast creates deeper, bolder and more roasted flavours. Grinding the beans correctly is important for a balanced cup. The brewing method then brings all these flavours together. Every step plays a part in creating the coffee you enjoy.</p>
+                    </div>
+                  </div>
+                </div>
+              } 
+            />
           </div>
         </div>
       </section>

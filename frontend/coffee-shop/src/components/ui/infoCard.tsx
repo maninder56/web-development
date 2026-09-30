@@ -56,7 +56,7 @@ export default function InfoCard({
             <motion.div
               layoutId={id}
               style={{ borderRadius: 16 }}
-              className='relative w-full max-w-2xl shadow-xl bg-surface-background pt-5'
+              className='relative w-full min-h-40 max-w-2xl shadow-xl bg-surface-background pt-5'
             >
                 <motion.button 
                     className='absolute top-3 right-3 cursor-pointer'
