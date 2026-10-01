@@ -1,7 +1,6 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { style } from 'motion/react-client'
 import { useEffect, useId, useState } from 'react'
 
 export default function InfoCard({
@@ -27,7 +26,15 @@ export default function InfoCard({
   return (
     <>
       <div className={`${className} min-w-20 min-h-20`}>
-        {!open && (
+        {open ? (
+          <div
+            aria-hidden
+            className='invisible h-full w-full'
+            style={{ borderRadius: 16 }}
+          >
+            {face}
+          </div>
+        ) : (
           <motion.div
             layoutId={id}
             onClick={() => setOpen(true)}
