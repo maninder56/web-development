@@ -1,6 +1,4 @@
 
-
-import InfoCard from '@/components/ui/infoCard';
 import PrimaryButton from '@/components/ui/primaryButton';
 import CoffeeInfoCards from '@/features/home/coffeeInfoCards';
 import '@/styles/variables.css'; 

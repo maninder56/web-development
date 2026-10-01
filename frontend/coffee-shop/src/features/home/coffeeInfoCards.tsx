@@ -1,5 +1,4 @@
 import InfoCard from '@/components/ui/infoCard';
-import { title } from 'process';
 
 
 export default function CoffeeInfoCards() {
