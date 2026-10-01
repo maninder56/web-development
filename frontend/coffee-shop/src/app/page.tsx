@@ -3,11 +3,12 @@ import PrimaryButton from '@/components/ui/primaryButton';
 import CoffeeInfoCards from '@/features/home/coffeeInfoCards';
 import '@/styles/variables.css'; 
 import Image from 'next/image';
+import { permanentRedirect } from 'next/navigation';
 
 export default function Home() {
   return (
     <div className='m-1 mt-4 sm:m-4 md:m-8 transition-[margin] duration-500 ease-in-out'>
-      <section className=''>
+      <section>
         <div className='flex justify-center mb-4'>
           <div className='flex-1 max-w-5xl flex flex-col sm:flex-row justify-between'>
             <div className='m-auto sm:m-0 sm:mr-2 max-w-xl text-center sm:text-start'>
@@ -33,6 +34,17 @@ export default function Home() {
             src={'/pictures/coffeeCup.avif'} width={1287} height={1931} alt='Coffee picture' />
         </div>
         <CoffeeInfoCards />
+      </section>
+      <section id='fav' className='flex justify-center apply-borders mt-15'>
+        <div className='flex-1 max-w-5xl'>
+          <div className='my-5 flex justify-center'>
+            <div className='flex-1 max-w-lg text-center'>
+              <h2 className='font-heading text-2xl md:text-3xl text-text-primary'>Our Favourites</h2>
+              <p className='font-body text-base md:text-lg text-text-secondary'>A selection of our most-loved coffees, bites, and seasonal favourites, made fresh and served with care.</p>
+            </div>
+          </div>
+          <div>cards</div>
+        </div>
       </section>
     </div>
   );

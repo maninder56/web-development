@@ -52,7 +52,9 @@ function MobileNavigation() {
             </Link>
             <button type='button'
                 onClick={() => setIsNavOpen(!isNavOpen)}
-                className='my-auto min-w-0 w-10 h-10 relative z-20 animate-reveal-drop'>
+                className={`
+                    my-auto min-w-0 w-10 h-10 z-20 animate-reveal-drop
+                    realtive`}>
                 <span className={`
                     absolute left-1/2 top-1/2 h-0.5 w-6
                     origin-center -translate-x-1/2 -translate-y-1/2
