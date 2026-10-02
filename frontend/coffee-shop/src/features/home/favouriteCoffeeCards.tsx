@@ -103,7 +103,7 @@ export default function FavouriteCoffeeCards() {
                         animate='center'
                         exit='exit'
                         transition={{ duration: 0.1 }}
-                        className='p-5 bg-surface-primary rounded-2xl sm:rounded-3xl shadow-xl max-w-lg'
+                        className='p-5 bg-surface-primary rounded-2xl sm:rounded-3xl shadow-lg max-w-lg'
                     >
                         <h2 className='mt-4 font-heading text-2xl md:text-3xl text-text-primary text-center'>{card.title}</h2>
                         <p className='my-2 font-body text-base md:text-lg text-text-secondary text-center'>{card.detail}</p>

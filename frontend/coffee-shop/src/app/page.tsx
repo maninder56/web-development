@@ -48,6 +48,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className='flex justify-center mt-20 apply-borders'>
+        <div className='flex-1 max-w-5xl'>
+          <div className='flex justify-center my-5'>
+            <div className='flex-1 max-w-3xl text-start'>
+              <h2 className='font-heading text-2xl md:text-3xl text-text-primary mb-2'>Hear from our customers</h2>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
