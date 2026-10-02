@@ -1,9 +1,9 @@
 
 import PrimaryButton from '@/components/ui/primaryButton';
 import CoffeeInfoCards from '@/features/home/coffeeInfoCards';
+import FavouriteCoffeeCards from '@/features/home/favouriteCoffeeCards';
 import '@/styles/variables.css'; 
 import Image from 'next/image';
-import { permanentRedirect } from 'next/navigation';
 
 export default function Home() {
   return (
@@ -35,15 +35,17 @@ export default function Home() {
         </div>
         <CoffeeInfoCards />
       </section>
-      <section id='fav' className='flex justify-center apply-borders mt-15'>
+      <section id='fav' className='flex justify-center mt-20'>
         <div className='flex-1 max-w-5xl'>
           <div className='my-5 flex justify-center'>
             <div className='flex-1 max-w-lg text-center'>
-              <h2 className='font-heading text-2xl md:text-3xl text-text-primary'>Our Favourites</h2>
+              <h2 className='font-heading text-3xl md:text-4xl text-text-primary mb-2'>Our Favourites</h2>
               <p className='font-body text-base md:text-lg text-text-secondary'>A selection of our most-loved coffees, bites, and seasonal favourites, made fresh and served with care.</p>
             </div>
           </div>
-          <div>cards</div>
+          <div className='flex justify-center'>
+            <FavouriteCoffeeCards />
+          </div>
         </div>
       </section>
     </div>

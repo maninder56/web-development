@@ -6,41 +6,47 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react'
 
 const cardArray: {
-        id: number,  
-        title: string, 
-        detail: string, 
-        imageUrl: string, 
+  id: number;
+  title: string;
+  detail: string;
+  imageUrl: string;
 }[] = [
-    {
-        id: 1, 
-        title: 'The Cozy Bean',
-        detail: 'A warm neighborhood coffee shop serving freshly brewed coffee, pastries, and cozy vibes.',
-        imageUrl: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb'
-    },
-    {
-        id: 2, 
-        title: 'Brew & Bloom',
-        detail: 'Specialty coffee paired with homemade cakes and a beautiful selection of fresh flowers.',
-        imageUrl: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085'
-    },
-    {
-        id: 3, 
-        title: 'Morning Roast',
-        detail: 'Start your day with rich espresso, smooth lattes, and freshly baked breakfast treats.',
-        imageUrl: 'https://images.unsplash.com/photo-1445116572660-236099ec97a0'
-    },
-    {
-        id: 4, 
-        title: 'Caffeine Corner',
-        detail: 'A modern coffee bar featuring cold brews, handcrafted drinks, and plenty of workspace.',
-        imageUrl: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e'
-    },
-    {
-        id: 5, 
-        title: 'The Daily Grind',
-        detail: 'Locally roasted beans, delicious cappuccinos, and a relaxed atmosphere for coffee lovers.',
-        imageUrl: 'https://images.unsplash.com/photo-1453614512568-c4024d13c247'
-    }
+  {
+    id: 1,
+    title: 'Caramel Latte',
+    detail: 'Smooth espresso blended with steamed milk and rich caramel syrup, finished with a delicate layer of foam.',
+    imageUrl: '/pictures/products/caramel-latte.jpg',
+  },
+  {
+    id: 2,
+    title: 'Iced Vanilla Latte',
+    detail: 'Freshly pulled espresso, chilled milk, and sweet vanilla syrup served over ice for a refreshing coffee break.',
+    imageUrl: '/pictures/products/iced-matcha-latte.jpg',
+  },
+  {
+    id: 3,
+    title: 'Chocolate Fudge Cake',
+    detail: 'Moist chocolate sponge layered with rich chocolate ganache and finished with delicate chocolate shavings.',
+    imageUrl: '/pictures/products/chocolate-fudge-cake.jpg',
+  },
+  {
+    id: 4,
+    title: 'Butter Croissant',
+    detail: 'A golden, flaky pastry with buttery layers, freshly baked to a crisp outside and a soft, airy centre.',
+    imageUrl: '/pictures/products/butter-croissant.jpg',
+  },
+  {
+    id: 5,
+    title: 'Berry Lemonade',
+    detail: 'A refreshing blend of juicy berries and fresh lemon, served over ice for a bright and fruity finish.',
+    imageUrl: '/pictures/products/berry-lemonade.jpg',
+  },
+  {
+    id: 6,
+    title: 'Blueberry Muffin',
+    detail: 'A soft, golden muffin packed with juicy blueberries and finished with a lightly sweet, crumbly top.',
+    imageUrl: '/pictures/products/blueberry-muffin.jpg',
+  },
 ]; 
 
 const variants = {
@@ -73,18 +79,20 @@ export default function FavouriteCoffeeCards() {
     }, [index]); 
 
     return (
-        <div className='
-            grid grid-cols-2 gap-4 w-full max-w-lg 
-            m-0 p-2 
-            overflow-hidden
-            lg:grid-cols-5 lg:max-w-4xl
-        '>
+        <div 
+            className={`
+                grid grid-cols-2 gap-4 w-full max-w-lg 
+                m-0 p-2 
+                overflow-hidden
+                lg:grid-cols-5 lg:max-w-4xl
+            `}
+        >
             <div 
-                className='
+                className={`
                     flex justify-center
                     col-span-2 justify-self-center mb-5 w-full
                     lg:col-start-2 lg:col-span-3
-                ' 
+                `}
                 aria-live='polite'
             >
                 <AnimatePresence mode='wait' custom={direction}>
@@ -100,7 +108,7 @@ export default function FavouriteCoffeeCards() {
                         <h2 className='mt-4 font-heading text-2xl md:text-3xl text-text-primary text-center'>{card.title}</h2>
                         <p className='my-2 font-body text-base md:text-lg text-text-secondary text-center'>{card.detail}</p>
                         <div className='mt-8 mb-4 flex justify-center'>
-                            <Image src={'/pictures/coffeeCup.avif'} alt={`${card.title} picture`} 
+                            <Image src={card.imageUrl} alt={`${card.title} picture`} 
                                 width={1287} height={1931}
                                 className='max-w-sm h-100 w-full object-cover rounded-2xl sm:rounded-3xl'
                             /> 
@@ -109,11 +117,11 @@ export default function FavouriteCoffeeCards() {
                 </AnimatePresence>
             </div>
             <div 
-                className='
+                className={`
                     flex justify-center
                     lg:col-start-1 lg:row-start-1
                     lg:flex-col lg:items-center
-                '
+                `}
             >
                 {/* Back button */}
                 <PrimaryButton onClick={() => handleButtonClick(-1)} className='w-22 h-15 sm:w-25 md:w-30 md:h-17'>
@@ -123,11 +131,11 @@ export default function FavouriteCoffeeCards() {
                 </PrimaryButton>
             </div>
             <div 
-                className='
+                className={`
                     flex justify-center
                     lg:col-start-5 lg:row-start-1
                     lg:flex-col lg:items-center
-                '
+                `}
             >
                 {/* Next button */}
                 <PrimaryButton onClick={() => handleButtonClick(1)} className='w-22 h-15 sm:w-25 md:w-30 md:h-17'>

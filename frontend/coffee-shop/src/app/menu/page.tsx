@@ -9,7 +9,7 @@ export default function Menu() {
             <section className='flex-1 max-w-5xl'>
                 <h1 className='text-5xl mb-4'>Menu Page</h1>
                 <div className='flex justify-center'>
-                    <FavouriteCoffeeCards />
+                    
                 </div>
             </section>
         </div>
