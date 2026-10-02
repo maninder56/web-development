@@ -73,8 +73,20 @@ export default function FavouriteCoffeeCards() {
     }, [index]); 
 
     return (
-        <div className='m-0 p-2 grid grid-cols-2 gap-4 w-full max-w-lg overflow-hidden'>
-            <div className='col-span-2 justify-self-center mb-5 w-full' aria-live='polite'>
+        <div className='
+            grid grid-cols-2 gap-4 w-full max-w-lg 
+            m-0 p-2 
+            overflow-hidden
+            lg:grid-cols-5 lg:max-w-4xl
+        '>
+            <div 
+                className='
+                    flex justify-center
+                    col-span-2 justify-self-center mb-5 w-full
+                    lg:col-start-2 lg:col-span-3
+                ' 
+                aria-live='polite'
+            >
                 <AnimatePresence mode='wait' custom={direction}>
                     <motion.div key={card.id}
                         custom={direction}
@@ -83,7 +95,7 @@ export default function FavouriteCoffeeCards() {
                         animate='center'
                         exit='exit'
                         transition={{ duration: 0.1 }}
-                        className='p-5 bg-surface-primary rounded-2xl sm:rounded-3xl shadow-xl'
+                        className='p-5 bg-surface-primary rounded-2xl sm:rounded-3xl shadow-xl max-w-lg'
                     >
                         <h2 className='mt-4 font-heading text-2xl md:text-3xl text-text-primary text-center'>{card.title}</h2>
                         <p className='my-2 font-body text-base md:text-lg text-text-secondary text-center'>{card.detail}</p>
@@ -96,14 +108,28 @@ export default function FavouriteCoffeeCards() {
                     </motion.div>
                 </AnimatePresence>
             </div>
-            <div className='flex justify-center'>
+            <div 
+                className='
+                    flex justify-center
+                    lg:col-start-1 lg:row-start-1
+                    lg:flex-col lg:items-center
+                '
+            >
+                {/* Back button */}
                 <PrimaryButton onClick={() => handleButtonClick(-1)} className='w-22 h-15 sm:w-25 md:w-30 md:h-17'>
                     <svg className='m-auto w-4 md:w-5'  viewBox='0 0 8 14' fill='none'>
                         <path d='M7 13 1 7l6-6' stroke='#f7deb7' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
                     </svg>
                 </PrimaryButton>
             </div>
-            <div className='flex justify-center'>
+            <div 
+                className='
+                    flex justify-center
+                    lg:col-start-5 lg:row-start-1
+                    lg:flex-col lg:items-center
+                '
+            >
+                {/* Next button */}
                 <PrimaryButton onClick={() => handleButtonClick(1)} className='w-22 h-15 sm:w-25 md:w-30 md:h-17'>
                     <svg className='m-auto w-4 md:w-5' viewBox='0 0 8 14' fill='none' >
                         <path d='m1 1 6 6-6 6' stroke='#f7deb7' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
