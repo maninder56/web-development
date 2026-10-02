@@ -3,7 +3,7 @@
 import PrimaryButton from '@/components/ui/primaryButton';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, number, Variant } from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
 
 const cardArray: {
         id: number,  
@@ -73,7 +73,7 @@ export default function FavouriteCoffeeCards() {
     }, [index]); 
 
     return (
-        <div className='m-1 grid grid-cols-2 gap-4 w-full max-w-lg'>
+        <div className='m-0 p-2 grid grid-cols-2 gap-4 w-full max-w-lg overflow-hidden'>
             <div className='col-span-2 justify-self-center mb-5 w-full' aria-live='polite'>
                 <AnimatePresence mode='wait' custom={direction}>
                     <motion.div key={card.id}
@@ -97,13 +97,17 @@ export default function FavouriteCoffeeCards() {
                 </AnimatePresence>
             </div>
             <div className='flex justify-center'>
-                <PrimaryButton onClick={() => handleButtonClick(-1)} className='w-30 h-15'>
-                    <span className='m-auto'>Back</span>
+                <PrimaryButton onClick={() => handleButtonClick(-1)} className='w-22 h-15 sm:w-25 md:w-30 md:h-17'>
+                    <svg className='m-auto w-4 md:w-5'  viewBox='0 0 8 14' fill='none'>
+                        <path d='M7 13 1 7l6-6' stroke='#f7deb7' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
+                    </svg>
                 </PrimaryButton>
             </div>
             <div className='flex justify-center'>
-                <PrimaryButton onClick={() => handleButtonClick(1)} className='w-30 h-15'>
-                    <span className='m-auto'>Next</span>
+                <PrimaryButton onClick={() => handleButtonClick(1)} className='w-22 h-15 sm:w-25 md:w-30 md:h-17'>
+                    <svg className='m-auto w-4 md:w-5' viewBox='0 0 8 14' fill='none' >
+                        <path d='m1 1 6 6-6 6' stroke='#f7deb7' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
+                    </svg>
                 </PrimaryButton>
             </div>
         </div>
