@@ -2,7 +2,7 @@
 
 import PrimaryButton from '@/components/ui/primaryButton';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, number, Variant } from 'motion/react'
 
 const cardArray: {
@@ -60,6 +60,18 @@ export default function FavouriteCoffeeCards() {
         ]); 
     }
 
+    function handleButtonClick(dir: 1 | -1) {
+        paginate(dir); 
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            paginate(1); 
+        }, 5000);
+
+        return () => clearInterval(timer); 
+    }, [index]); 
+
     return (
         <div className='m-1 grid grid-cols-2 gap-4 w-full max-w-lg'>
             <div className='col-span-2 justify-self-center mb-5 w-full' aria-live='polite'>
@@ -85,12 +97,12 @@ export default function FavouriteCoffeeCards() {
                 </AnimatePresence>
             </div>
             <div className='flex justify-center'>
-                <PrimaryButton onClick={() => paginate(-1)} className='w-30 h-15'>
+                <PrimaryButton onClick={() => handleButtonClick(-1)} className='w-30 h-15'>
                     <span className='m-auto'>Back</span>
                 </PrimaryButton>
             </div>
             <div className='flex justify-center'>
-                <PrimaryButton onClick={() => paginate(1)} className='w-30 h-15'>
+                <PrimaryButton onClick={() => handleButtonClick(1)} className='w-30 h-15'>
                     <span className='m-auto'>Next</span>
                 </PrimaryButton>
             </div>
