@@ -75,7 +75,7 @@ export default function FavouriteCoffeeCards() {
             paginate(1); 
         }, 5000);
 
-        return () => clearInterval(timer); 
+        return () => clearTimeout(timer); 
     }, [index]); 
 
     return (

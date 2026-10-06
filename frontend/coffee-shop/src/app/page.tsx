@@ -1,6 +1,7 @@
 
 import PrimaryButton from '@/components/ui/primaryButton';
 import CoffeeInfoCards from '@/features/home/coffeeInfoCards';
+import CustomersReviewCard from '@/features/home/customersReviewCard';
 import FavouriteCoffeeCards from '@/features/home/favouriteCoffeeCards';
 import '@/styles/variables.css'; 
 import Image from 'next/image';
@@ -35,7 +36,7 @@ export default function Home() {
         </div>
         <CoffeeInfoCards />
       </section>
-      <section id='fav' className='flex justify-center mt-20'>
+      <section id='fav' className='flex justify-center mt-30'>
         <div className='flex-1 max-w-5xl'>
           <div className='my-5 flex justify-center'>
             <div className='flex-1 max-w-lg text-center'>
@@ -48,12 +49,15 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className='flex justify-center mt-20 apply-borders'>
+      <section className='flex justify-center mt-30'>
         <div className='flex-1 max-w-5xl'>
           <div className='flex justify-center my-5'>
-            <div className='flex-1 max-w-3xl text-start'>
-              <h2 className='font-heading text-2xl md:text-3xl text-text-primary mb-2'>Hear from our customers</h2>
+            <div className='flex-1 max-w-217.5 text-center lg:text-start'>
+              <h2 className='font-heading text-3xl md:text-4xl text-text-primary mb-2'>Hear from our customers</h2>
             </div>
+          </div>
+          <div className='flex justify-center'>
+            <CustomersReviewCard />
           </div>
         </div>
       </section>

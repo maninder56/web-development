@@ -17,28 +17,28 @@ const reviewArray: {
         name: 'Sarah Johnson',
         review: 'Absolutely loved my experience! The quality was excellent and everything arrived exactly as described. I\'ll definitely be ordering again.',
         imageId: 10, 
-        imageUrl: ''
+        imageUrl: '/pictures/customerReview/review_one.png'
     },
     {
         id: 2,
         name: 'Michael Thompson',
         review: 'Great service from start to finish. The product exceeded my expectations and the delivery was surprisingly quick.',
         imageId: 20, 
-        imageUrl: ''
+        imageUrl: '/pictures/customerReview/review_two.png'
     },
     {
         id: 3,
         name: 'Emily Davis',
         review: 'I\'m really impressed with the quality. It looks even better in person and feels very well made. Highly recommended!',
         imageId: 30, 
-        imageUrl: ''
+        imageUrl: '/pictures/customerReview/review_three.png'
     },
     {
         id: 4,
         name: 'James Wilson',
         review: 'A fantastic experience overall. The website was easy to use, my order arrived on time, and the product was exactly what I wanted.',
         imageId: 40, 
-        imageUrl: ''
+        imageUrl: '/pictures/customerReview/review_four.png'
     },
 ]; 
 
@@ -64,13 +64,13 @@ export default function CustomersReviewCard() {
         paginate(dir); 
     }
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         paginate(1); 
-    //     }, 5000);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            paginate(1); 
+        }, 5000);
 
-    //     return () => clearInterval(timer); 
-    // }, [index]); 
+        return () => clearTimeout(timer); 
+    }, [index]); 
 
 
     return (
@@ -84,8 +84,8 @@ export default function CustomersReviewCard() {
                     exit='exit'
                     transition={{ duration: 0.1 }}
                     className='flex-1 flex justify-center'>
-                    <Image src={'/pictures/coffeeCup.avif'} alt='picture'
-                        width={1287} height={1931} 
+                    <Image src={review.imageUrl} alt={`${review.name} picture`}
+                        width={400} height={400} 
                         className='max-w-sm h-96 w-full object-cover rounded-2xl'
                     />
                 </motion.div>
