@@ -1,7 +1,4 @@
 
-import InfoCard from '@/components/ui/infoCard';
-import CustomersReviewCard from '@/features/home/customersReviewCard';
-import FavouriteCoffeeCards from '@/features/home/favouriteCoffeeCards';
 import MenuNavigation from '@/features/menu/menuNavigation';
 
 
@@ -13,7 +10,7 @@ export default function Menu() {
                     <h1 className='font-heading text-3xl md:text-4xl text-text-primary'>Our Menu</h1>
                     <p className='font-body text-base md:text-lg text-text-secondary'>Good coffee, good food, and something for every kind of day.</p>
                 </div>
-                <div className='flex justify-center'>
+                <div className='flex justify-center lg:justify-end'>
                     <MenuNavigation />
                 </div>
             </section>
