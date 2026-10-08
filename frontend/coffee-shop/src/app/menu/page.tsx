@@ -1,4 +1,5 @@
 
+import MenuItems from '@/features/menu/menuItems';
 import MenuNavigation from '@/features/menu/menuNavigation';
 
 
@@ -10,8 +11,11 @@ export default function Menu() {
                     <h1 className='font-heading text-3xl md:text-4xl text-text-primary'>Our Menu</h1>
                     <p className='font-body text-base md:text-lg text-text-secondary'>Good coffee, good food, and something for every kind of day.</p>
                 </div>
-                <div className='flex justify-center lg:justify-end'>
+                <div className='flex justify-center lg:justify-end sticky top-0'>
                     <MenuNavigation />
+                </div>
+                <div className='flex justify-center'>
+                    <MenuItems />
                 </div>
             </section>
         </div>

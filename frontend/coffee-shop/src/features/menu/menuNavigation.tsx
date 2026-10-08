@@ -1,14 +1,14 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react'
+import { MenuNavigationSection } from '@/components/types/componentTypes';
 
-type NavigationSection = 'coffee' | 'freshBakes' | 'littleBites' | 'cold&Refreshing'; 
 
 const menuList: {
     id: number; 
     title: string; 
-    kind: NavigationSection; 
+    kind: MenuNavigationSection; 
     svgGroup: React.ReactNode; 
 }[] = [
     {
@@ -59,10 +59,72 @@ const menuList: {
 ]
 
 export default function MenuNavigation() {
-    const [currentSection, setCurrentSection] = useState<NavigationSection>('coffee'); 
+    const [currentSection, setCurrentSection] = useState<MenuNavigationSection>('coffee'); 
+    
+    const isNavigatingRef = useRef(false);
+
+    function handleClick(kind: MenuNavigationSection) {
+        isNavigatingRef.current = true; 
+
+        setCurrentSection(kind); 
+
+        document.getElementById(kind)?.scrollIntoView({
+            behavior: 'smooth', 
+            
+        }); 
+        
+        setTimeout(() => {
+            isNavigatingRef.current = false; 
+        }, 1000);
+    }
+
+     useEffect(() => {
+        const sections = menuList
+            .map(item => document.getElementById(item.kind))
+            .filter(Boolean);
+
+        const observer = new IntersectionObserver(
+            entries => {
+                if (isNavigatingRef.current) return; 
+
+                const visibleSections = entries
+                    .filter(entry => entry.isIntersecting)
+                    .sort(
+                        (a, b) =>
+                            Math.abs(a.boundingClientRect.top) -
+                            Math.abs(b.boundingClientRect.top)
+                    );
+
+                if (visibleSections.length > 0) {
+                    setCurrentSection(
+                        visibleSections[0].target.id as MenuNavigationSection
+                    );
+                }
+            },
+            {
+                rootMargin: '-10% 0px -70% 0px',
+                threshold: 0,
+            }
+        );
+
+        sections.forEach(section => {
+            if (section) observer.observe(section);
+        });
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <motion.ul className='flex-1 max-w-75 sm:max-w-170 flex justify-between sticky mt-4 p-2 sm:p-3 rounded-2xl bg-surface-primary font-body text-lg md:text-xl text-text-primary'>
+        <motion.ul 
+            className={`
+                flex-1 max-w-75 sm:max-w-170 
+                flex justify-between 
+                mt-4 p-2 sm:p-3 
+                border border-surface-primary
+                rounded-2xl bg-surface-primary shadow-sm
+                font-body text-lg md:text-xl text-text-primary
+            `}
+        >
             {
                 menuList.map(item => 
                     <motion.li key={item.id}
@@ -73,10 +135,10 @@ export default function MenuNavigation() {
                             flex rounded-xl cursor-pointer relative
                             ${currentSection === item.kind ? 'text-text-on-brand transition-colors duration-500' : ''} 
                         `}
-                        onClick={() => setCurrentSection(item.kind)}
+                        onClick={() => handleClick(item.kind)}
                     >
                         <div className='p-2 z-10 flex'>
-                            <span className='m-auto mr-1 hidden sm:block'>{item.kind}</span>
+                            <span className='m-auto mr-1 hidden sm:block'>{item.title}</span>
                             <svg viewBox='0 0 24 24' fill='none' className='w-7' 
                                 stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'>
                                 {item.svgGroup}
