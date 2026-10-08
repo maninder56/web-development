@@ -15,37 +15,37 @@ const cardArray: {
     id: 1,
     title: 'Caramel Latte',
     detail: 'Smooth espresso blended with steamed milk and rich caramel syrup, finished with a delicate layer of foam.',
-    imageUrl: '/pictures/products/caramel-latte.jpg',
+    imageUrl: '/pictures/products/Caramel_Latte.jpg',
   },
   {
     id: 2,
     title: 'Iced Vanilla Latte',
     detail: 'Freshly pulled espresso, chilled milk, and sweet vanilla syrup served over ice for a refreshing coffee break.',
-    imageUrl: '/pictures/products/iced-matcha-latte.jpg',
+    imageUrl: '/pictures/products/Iced_Vanilla_Latte.jpg',
   },
   {
     id: 3,
     title: 'Chocolate Fudge Cake',
     detail: 'Moist chocolate sponge layered with rich chocolate ganache and finished with delicate chocolate shavings.',
-    imageUrl: '/pictures/products/chocolate-fudge-cake.jpg',
+    imageUrl: '/pictures/products/Chocolate_Fudge_Cake.jpg',
   },
   {
     id: 4,
     title: 'Butter Croissant',
     detail: 'A golden, flaky pastry with buttery layers, freshly baked to a crisp outside and a soft, airy centre.',
-    imageUrl: '/pictures/products/butter-croissant.jpg',
+    imageUrl: '/pictures/products/Butter_Croissant.jpg',
   },
   {
     id: 5,
     title: 'Berry Lemonade',
     detail: 'A refreshing blend of juicy berries and fresh lemon, served over ice for a bright and fruity finish.',
-    imageUrl: '/pictures/products/berry-lemonade.jpg',
+    imageUrl: '/pictures/products/Berry_Lemonade.jpg',
   },
   {
     id: 6,
     title: 'Blueberry Muffin',
     detail: 'A soft, golden muffin packed with juicy blueberries and finished with a lightly sweet, crumbly top.',
-    imageUrl: '/pictures/products/blueberry-muffin.jpg',
+    imageUrl: '/pictures/products/Blueberry_Muffin.jpg',
   },
 ]; 
 
