@@ -3,19 +3,27 @@ services:
     build:
       context: . 
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_GOOGLE_MAP_API: ${NEXT_PUBLIC_GOOGLE_MAP_API}
     image: coffee-shop:prod
     container_name: coffee-shop-prod
     ports:
       - "3001:3001"
+    environment:
+      NEXT_PUBLIC_GOOGLE_MAP_API: ${NEXT_PUBLIC_GOOGLE_MAP_API}
 
   nextjs-dev:
     build:
       context: .
+      args:
+        NEXT_PUBLIC_GOOGLE_MAP_API: ${NEXT_PUBLIC_GOOGLE_MAP_API}
       dockerfile: Dockerfile.dev
     image: coffee-shop:dev
     container_name: coffee-shop-dev
     ports:
       - "3000:3000"
+    environment:
+      NEXT_PUBLIC_GOOGLE_MAP_API: ${NEXT_PUBLIC_GOOGLE_MAP_API}
     volumes:
       - ./certificates:/app/certificates:ro
     develop:
