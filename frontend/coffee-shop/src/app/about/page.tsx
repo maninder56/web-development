@@ -1,3 +1,4 @@
+import PrimaryLinkButton from '@/components/ui/primaryLinkButton';
 import Image from 'next/image';
 
 
@@ -41,6 +42,17 @@ export default function About() {
                                 </p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+            <section className='mt-15 flex justify-center'>
+                <div className='m-1 sm:m-4 md:m-8 max-w-5xl text-center'>
+                    <h2 className='font-heading text-2xl md:text-3xl text-text-primary mb-2'>GOOD COFFEE, GOOD COMPANY</h2>
+                    <p className='font-heading text-base md:text-lg text-text-primary mb-5'>Come by for a cup. Stay for the conversation.</p>
+                    <div className='flex justify-center'>
+                        <PrimaryLinkButton href={'visitus'}>
+                            <span>Visit Us</span>
+                        </PrimaryLinkButton>
                     </div>
                 </div>
             </section>
