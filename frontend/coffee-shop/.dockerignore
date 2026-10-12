@@ -1,3 +1,7 @@
+# Custome files
+Design/
+
+
 # Dependencies (installed inside the image, never copy from host)
 node_modules/
 .pnp/

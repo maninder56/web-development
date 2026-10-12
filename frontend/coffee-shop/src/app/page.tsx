@@ -1,11 +1,88 @@
 
+import PrimaryLinkButton from '@/components/ui/primaryLinkButton';
+import PrimaryScrollButton from '@/components/ui/primaryScrollButton';
+import CoffeeInfoCards from '@/features/home/coffeeInfoCards';
+import CustomersReviewCard from '@/features/home/customersReviewCard';
+import FavouriteCoffeeCards from '@/features/home/favouriteCoffeeCards';
+import '@/styles/variables.css'; 
+import Image from 'next/image';
 
 export default function Home() {
   return (
-    <div>
-      <main className=" border-solid border-red-700 border-2">
-        <h1>Welcome to Coffee shop</h1>
-      </main>
+    <div className='m-1 mt-4 sm:m-4 md:m-8 transition-[margin] duration-500 ease-in-out'>
+      <section>
+        <div className='flex justify-center mb-4'>
+          <div className='flex-1 max-w-5xl flex flex-col sm:flex-row justify-between'>
+            <div className='m-auto sm:m-0 sm:mr-2 max-w-xl text-center sm:text-start'>
+              <h2 className='font-heading font-medium text-2xl md:text-3xl text-text-primary'>A place to meet, pause, and stay awhile.</h2>
+              <p className='font-body font-medium text-base md:text-lg text-text-secondary'>From your first morning cup to an afternoon catch-up, we&apos;re here to make your day a little better.</p>
+            </div>
+            <PrimaryScrollButton tagId='ourFavourites' className='m-auto mt-4 sm:mt-auto sm:m-0'>
+              <span className='m-auto mr-2 text-lg sm:text-xl'>Our Favourite</span>
+              <svg viewBox='0 0 20 19' fill='none'
+                className='m-auto w-5 sm:w-7'>
+                <path d='M9.573 1.263A.47.47 0 0 1 10.001 1a.48.48 0 0 1 .427.263l2.08 4.17c.136.275.338.513.588.693s.54.297.847.341l4.648.674a.48.48 0 0 1 .386.322.47.47 0 0 1-.121.484l-3.362 3.243a1.89 1.89 0 0 0-.55 1.674l.794 4.581a.47.47 0 0 1-.19.465.48.48 0 0 1-.504.035l-4.156-2.165a1.93 1.93 0 0 0-1.775 0l-4.155 2.165a.48.48 0 0 1-.666-.24.47.47 0 0 1-.027-.26l.793-4.58a1.87 1.87 0 0 0-.55-1.675L1.146 7.948a.471.471 0 0 1 .264-.808l4.648-.673a1.9 1.9 0 0 0 .848-.34c.25-.181.452-.419.59-.693z' 
+                  stroke='#f7deb7' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'/>
+              </svg>
+            </PrimaryScrollButton>
+          </div>
+        </div>
+        <div className='flex justify-center relative'>
+          <Image className={`
+            max-w-5xl h-150 sm:h-200 w-full object-cover
+            transition-all duration-500 ease-in-out
+            rounded-xl sm:rounded-2xl 
+          `} 
+            src={'/pictures/coffeeCup.avif'} loading='eager' width={1287} height={1931} alt='Coffee picture' />
+        </div>
+        <CoffeeInfoCards />
+      </section>
+      <section id='ourFavourites' className='flex justify-center mt-30'>
+        <div className='flex-1 max-w-5xl'>
+          <div className='my-5 flex justify-center'>
+            <div className='flex-1 max-w-lg text-center'>
+              <h2 className='font-heading text-3xl md:text-4xl text-text-primary mb-2'>Our Favourites</h2>
+              <p className='font-body text-base md:text-lg text-text-secondary'>A selection of our most-loved coffees, bites, and seasonal favourites, made fresh and served with care.</p>
+            </div>
+          </div>
+          <div className='flex justify-center'>
+            <FavouriteCoffeeCards />
+          </div>
+        </div>
+      </section>
+      <section className='flex justify-center mt-30'>
+        <div className='flex-1 max-w-5xl'>
+          <div className='flex justify-center my-5'>
+            <div className='flex-1 max-w-217.5 text-center lg:text-start'>
+              <h2 className='font-heading text-3xl md:text-4xl text-text-primary mb-2'>Hear from our customers</h2>
+            </div>
+          </div>
+          <div className='flex justify-center'>
+            <CustomersReviewCard />
+          </div>
+        </div>
+      </section>
+      <section className='flex justify-center mt-30 mb-10'>
+        <div className='flex-1 max-w-5xl text-center'>
+          <h2 className='font-heading text-3xl md:text-4xl text-text-primary'>Visit Us</h2>
+          <div className='mt-8 font-body text-base md:text-lg text-text-secondary'>
+            <p>18 Rosewood Lane, Notting Hill, London W11 3AB</p>
+            <div className='mt-4 text-sm md:text-base'>
+              <p>Monday - Friday: 6:00 - 18:00</p>
+              <p>Saturday - Sunday: 9:00 - 16:00</p>
+            </div>
+          </div>
+          <div className='flex justify-center mt-4'>
+            <PrimaryLinkButton href={'visitus'} className='m-auto'>
+              <span className='m-auto mr-2 text-lg sm:text-xl'>More Details</span>
+              <svg viewBox="0 0 24 24" fill="none" className='m-auto w-5 sm:w-7'>
+                <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2M7 8h8m-8 4h10M7 16h6" 
+                  stroke="#f7deb7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>      
+          </PrimaryLinkButton>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
