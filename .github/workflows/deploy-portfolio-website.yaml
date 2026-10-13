@@ -1,0 +1,57 @@
+name: Deploy Portfolio website to Azure
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'frontend/portfolio-website/**'
+      - '.github/workflows/deploy-portfolio-website.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-portfolio-website
+  cancel-in-progress: false 
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with: 
+          context: ./frontend/portfolio-website
+          push: true
+          tags: | 
+            ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-website:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-website:latest 
+
+
+      - name: Log in to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy image to Azure
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_PORTFOLIO_WEBSITE }}
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-website:latest
+
+
+ 
