@@ -11,7 +11,6 @@ export default function Home() {
   return (
     <div className='m-1 mt-4 sm:m-4 md:m-8 transition-[margin] duration-500 ease-in-out'>
       <section>
-        <h1>Testing CD</h1>
         <div className='flex justify-center mb-4'>
           <div className='flex-1 max-w-5xl flex flex-col sm:flex-row justify-between'>
             <div className='m-auto sm:m-0 sm:mr-2 max-w-xl text-center sm:text-start'>
