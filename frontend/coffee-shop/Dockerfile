@@ -26,7 +26,7 @@ RUN npm run build
 
 
 # 3. Run NEXT.js application
-FROM dhi.io/node:26-alpine3.23-dev AS runner
+FROM dhi.io/node:26-alpine3.23 AS runner
 
 WORKDIR /app
 
