@@ -1,0 +1,31 @@
+services:
+  nextjs-prod-standalone:
+    build:
+      context: . 
+      dockerfile: Dockerfile
+    image: portfolio-website:prod
+    container_name: portfolio-website-prod
+    ports:
+      - "3001:3001"
+
+  nextjs-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: portfolio-website:dev
+    container_name: portfolio-website
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./certificates:/app/certificates:ro
+    develop:
+      watch:
+        - path: . 
+          action: sync
+          target: /app
+          ignore:
+            - node_modules/
+            - .next/
+        - action: rebuild
+          path: package.json
+    
