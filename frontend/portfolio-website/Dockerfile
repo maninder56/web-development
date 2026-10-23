@@ -19,9 +19,6 @@ COPY . .
 
 ENV NODE_ENV=production
 
-ARG NEXT_PUBLIC_GOOGLE_MAP_API
-ENV NEXT_PUBLIC_GOOGLE_MAP_API=$NEXT_PUBLIC_GOOGLE_MAP_API
-
 RUN npm run build
 
 
@@ -35,9 +32,6 @@ ENV PORT=3001
 ENV HOSTNAME="0.0.0.0"
 
 COPY --from=builder --chown=node:node /app/public ./public
-
-RUN mkdir .next
-RUN chown node:node .next
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
