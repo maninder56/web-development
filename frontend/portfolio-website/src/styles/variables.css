@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@theme {
+    /* Fonts */
+    --font-heading: var(--font-Kedebideri-Regular); 
+    --font-body: var(--font-Michroma-Regular); 
+}
