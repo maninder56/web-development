@@ -2,6 +2,40 @@
 
 @theme {
     /* Fonts */
-    --font-heading: var(--font-Kedebideri-Regular); 
-    --font-body: var(--font-Michroma-Regular); 
+    --font-heading: var(--font-Michroma-Regular); 
+    --font-body: var(--font-Kedebideri-Regular); 
+
+     /* Primitive colours — Primary */
+    --color-primary-50: #FDFCFA;
+    --color-primary-100: #F9F6EF;
+    --color-primary-200: #F6F2E8;
+    --color-primary-300: #F2ECDD;
+    --color-primary-400: #EFE8D6;
+    --color-primary-500: #EBE2CC;
+    --color-primary-600: #D6CEBA;
+    --color-primary-700: #A7A091;
+    --color-primary-800: #817C70;
+    --color-primary-900: #635F56;
+
+    /* Primitive colours — Secondary */
+    --color-secondary-50: #E6E6E6;
+    --color-secondary-100: #B0B0B0;
+    --color-secondary-200: #8A8A8A;
+    --color-secondary-300: #545454;
+    --color-secondary-400: #333333;
+    --color-secondary-500: #000000;
+
+
+    /*
+        Semantics
+    */
+
+    /* Text */
+    --color-text-primary: var(--color-secondary-400); 
+    --color-text-secondary: var(--color-primary-500); 
+
+    /* Surface */
+    --color-surface-primary: var(--color-primary-200);
+    --color-surface-secondary: var(--color-secondary-400);
+    --color-surface-background: var(--color-primary-200); 
 }
