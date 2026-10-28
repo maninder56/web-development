@@ -1,4 +1,5 @@
 
+import AboutMe from '@/components/features/home/aboutMe';
 import SelectedProjects from '@/components/features/home/selectedProjects';
 import PrimaryScrollButton from '@/components/ui/primaryScrollButton';
 import '@/styles/variables.css'; 
@@ -59,8 +60,11 @@ export default function Home() {
           </div>
       </section>
       </div>
-      <section className='bg-surface-secondary rounded-lg w-full mt-20'>
+      <section className='bg-surface-secondary w-full mt-20'>
         <SelectedProjects />
+      </section>
+      <section className='mt-20'>
+        <AboutMe />
       </section>
     </div>
   );

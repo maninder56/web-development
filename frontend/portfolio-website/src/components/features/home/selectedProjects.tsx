@@ -1,8 +1,8 @@
 'use client'
 
 import SecondaryExternalLinkButton from '@/components/ui/secondaryExternalLinkButton';
+import { HomePageNavigationElementID } from '@/types/global';
 import Image from 'next/image';
-import { useState } from 'react';
 
 
 type ProjectsList = {
@@ -64,12 +64,12 @@ const projectsList: ProjectsList = [
     }, 
 ]; 
 
-export default function SelectedProjects() {
-    
+const workSectionId: HomePageNavigationElementID = 'work'; 
 
+export default function SelectedProjects() {
     return (
-        <div className='text-text-secondary max-w-5xl m-auto pt-20 p-2'>
-            <h2 id='work' className='font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-end scroll-mt-10'>Selected Projects</h2>
+        <div className='text-text-secondary max-w-5xl m-auto py-30 p-2'>
+            <h2 id={workSectionId} className='font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-end scroll-mt-10'>Selected Projects</h2>
             {
                 projectsList.map(project => {
                     const even: boolean = project.id % 2 === 0; 
