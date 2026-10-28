@@ -38,4 +38,7 @@
     --color-surface-primary: var(--color-primary-200);
     --color-surface-secondary: var(--color-secondary-400);
     --color-surface-background: var(--color-primary-200); 
+
+    /* Border */
+    --color-border-dark: var(--color-primary-700); 
 }
