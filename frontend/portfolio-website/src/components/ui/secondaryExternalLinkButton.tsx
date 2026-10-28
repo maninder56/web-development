@@ -2,7 +2,7 @@
 import { ReactNode} from 'react';
 import { ArcOptions, motion } from 'motion/react'
 
-export default function secondaryExternalLinkButton({
+export default function SecondaryExternalLinkButton({
     children, 
     className, 
     href, 

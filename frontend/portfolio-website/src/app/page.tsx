@@ -1,4 +1,5 @@
 
+import SelectedProjects from '@/components/features/home/selectedProjects';
 import PrimaryScrollButton from '@/components/ui/primaryScrollButton';
 import '@/styles/variables.css'; 
 
@@ -33,7 +34,7 @@ export default function Home() {
             </div>
           </div>
           <div className='mt-20'>
-            <header className='font-heading text-2xl sm:text-4xl'>Design / Develop / Deploy</header>
+            <header className='font-heading text-2xl sm:text-3xl md:text-4xl'>Design / Develop / Deploy</header>
             <div className='mt-5 flex flex-col-reverse sm:flex-row gap-4'>
               <p className='flex-1 font-body text-text-primary text-base sm:text-lg'>
                 I build web applications that are simple for your customers to use and solid underneath. 
@@ -58,6 +59,9 @@ export default function Home() {
           </div>
       </section>
       </div>
+      <section className='bg-surface-secondary rounded-lg w-full mt-20'>
+        <SelectedProjects />
+      </section>
     </div>
   );
 }
