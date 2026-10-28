@@ -69,7 +69,7 @@ export default function SelectedProjects() {
 
     return (
         <div className='text-text-secondary max-w-5xl m-auto pt-20 p-2'>
-            <h2 id='work' className='font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-end'>Selected Projects</h2>
+            <h2 id='work' className='font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-end scroll-mt-10'>Selected Projects</h2>
             {
                 projectsList.map(project => {
                     const even: boolean = project.id % 2 === 0; 
@@ -92,7 +92,7 @@ export default function SelectedProjects() {
                             >
                                 <div className='flex-1 flex flex-col justify-center'>
                                     <p className='font-body text-base sm:text-lg'>{project.description}</p>
-                                    <div className='flex justify-evenly lg:flex-col'>
+                                    <div className='flex justify-evenly max-[375px]:flex-col lg:flex-col'>
                                         <SecondaryExternalLinkButton href={project.WebsiteLink} className='m-auto my-5'>
                                             <span className='mr-2'>View live site</span>
                                             <svg className='m-auto w-4' viewBox="0 0 55 55" fill="none">

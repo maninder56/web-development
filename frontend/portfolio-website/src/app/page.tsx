@@ -18,7 +18,7 @@ export default function Home() {
           </header>
           <div className='mt-5 max-w-sm sm:mt-2'>
             <p className='font-body text-text-primary text-base sm:text-lg'>
-              Full-stack developer turning business ideas into polished, production-ready web applications. Open to freelance work.
+              Full-stack developer turning business ideas into polished, production-ready web applications.
             </p>
             <div className='flex justify-between p-2'>
               <PrimaryScrollButton tagId='contact' className='font-body'>
