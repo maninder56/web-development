@@ -1,6 +1,7 @@
 
 import AboutMe from '@/components/features/home/aboutMe';
 import Contact from '@/components/features/home/contact';
+import Footer from '@/components/features/home/footer';
 import SelectedProjects from '@/components/features/home/selectedProjects';
 import PrimaryScrollButton from '@/components/ui/primaryScrollButton';
 import '@/styles/variables.css'; 
@@ -70,6 +71,7 @@ export default function Home() {
       <section className='bg-surface-secondary w-full mt-20'>
         <Contact />
       </section>
+      <Footer />
     </div>
   );
 }
