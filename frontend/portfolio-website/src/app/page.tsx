@@ -1,14 +1,17 @@
 
-import AboutMe from '@/components/features/home/aboutMe';
-import Contact from '@/components/features/home/contact';
-import Footer from '@/components/features/home/footer';
-import SelectedProjects from '@/components/features/home/selectedProjects';
+import AboutMe from '@/features/home/aboutMe';
+import Contact from '@/features/home/contact';
+import Footer from '@/features/home/footer';
+
 import PrimaryScrollButton from '@/components/ui/primaryScrollButton';
+import SelectedProjects from '@/features/home/selectedProjects';
 import '@/styles/variables.css'; 
+import FloadingNavigation from '@/components/floatingNavigation';
 
 export default function Home() {
   return (
-    <div className='mt-20'>
+    <div id='home' className='mt-20 scroll-mt-40'>
+      <FloadingNavigation />
       <div className='m-2 sm:m-4 sm:mt-30'>
         <section className='w-full max-w-5xl m-auto'>
           <header className={`
