@@ -38,6 +38,7 @@ export default function Contact() {
                             type='text' 
                             autoComplete='name' 
                             required 
+                            maxLength={100}
                             className={`
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
                                 text-base
@@ -60,6 +61,7 @@ export default function Contact() {
                             type='email' 
                             autoComplete='email' 
                             required 
+                            maxLength={200}
                             className={`
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
                                 text-base
@@ -82,6 +84,7 @@ export default function Contact() {
                             required
                             maxLength={500}
                             className={`
+                                min-h-24 max-h-64 overflow-y-auto resize-y
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
                                 text-base placeholder:text-text-secondary/60
                                 focus:outline-none focus:ring-2 focus:ring-surface-primary
@@ -97,7 +100,11 @@ export default function Contact() {
                 <div className='flex-1 m-auto'>
                     <div className='text-center mb-15'>
                         <h5 className='font-heading text-lg md:text-xl mb-4'>Email</h5>
-                        <p className='font-body text-lg md:text-xl'>maninder123450@gmail.com</p>
+                        <a href='mailto:maninder123450@gmail.com' 
+                            className='font-body text-lg md:text-xl underline underline-offset-4 hover:no-underline'
+                        >
+                            maninder123450@gmail.com
+                        </a>
                     </div>
                     <div className='m-auto flex'>
                         <SecondaryExternalLinkButton href='https://github.com/maninder56' className='m-auto'>
