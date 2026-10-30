@@ -43,7 +43,7 @@ const skillsList: {
 export default function AboutMe() {
     return (
         <div className='max-w-5xl m-auto py-15 p-2 text-text-primary'>
-            <h2 id={aboutSectionId} className='font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl scroll-mt-10'>A little about me</h2>
+            <h2 id={aboutSectionId} className='font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl scroll-mt-30'>A little about me</h2>
             <div className='mt-5 flex flex-col md:flex-row md:gap-10'>
                 <p className='flex-1 font-body text-lg sm:text-xl'>
                     I help businesses get online with

@@ -10,10 +10,10 @@ import FloadingNavigation from '@/components/floatingNavigation';
 
 export default function Home() {
   return (
-    <div id='home' className='mt-20 scroll-mt-40'>
+    <div className='mt-20'>
       <FloadingNavigation />
       <div className='m-2 sm:m-4 sm:mt-30'>
-        <section className='w-full max-w-5xl m-auto'>
+        <section id='home' className='w-full max-w-5xl m-auto scroll-mt-50'>
           <header className={`
             flex flex-col
             font-heading text-end text-[13vw] lg:text-[130px] text-text-primary 

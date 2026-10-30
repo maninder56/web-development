@@ -10,7 +10,7 @@ export default function Contact() {
     return (
         <div className='text-text-secondary max-w-5xl m-auto py-30 p-2'>
             <h2 id={contactSectionId} 
-                className='font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-end scroll-mt-10'
+                className='font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-end scroll-mt-30'
             >
                 Let&apos;s work together
             </h2>

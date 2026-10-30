@@ -69,7 +69,7 @@ const workSectionId: HomePageNavigationElementID = 'work';
 export default function SelectedProjects() {
     return (
         <div className='text-text-secondary max-w-5xl m-auto py-30 p-2'>
-            <h2 id={workSectionId} className='font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-end scroll-mt-10'>Selected Projects</h2>
+            <h2 id={workSectionId} className='font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-end scroll-mt-30'>Selected Projects</h2>
             {
                 projectsList.map(project => {
                     const even: boolean = project.id % 2 === 0; 
