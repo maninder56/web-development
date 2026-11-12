@@ -1,3 +1,11 @@
+# Custome files
+DatabaseDiagram/
+
+
+**/Dockerfile*
+**/docker-compose*
+**/secrets/
+
 **/.classpath
 **/.dockerignore
 **/.env

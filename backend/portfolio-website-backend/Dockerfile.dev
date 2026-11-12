@@ -1,0 +1,18 @@
+﻿FROM mcr.microsoft.com/dotnet/sdk:10.0
+
+WORKDIR /src 
+
+COPY ["API.csproj", "API/"]
+
+RUN dotnet restore "./API/API.csproj"
+
+COPY . . 
+
+WORKDIR "/src/API"
+
+EXPOSE 4000
+
+ENV ASPNETCORE_URLS=http://+:4000
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+CMD ["dotnet", "run", "--no-launch-profile"]
