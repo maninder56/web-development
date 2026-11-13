@@ -15,5 +15,6 @@ EXPOSE 4000
 
 
 ENV ASPNETCORE_ENVIRONMENT=Development
+ENV ASPNETCORE_URLS=https://+:4000
 
-CMD ["dotnet", "run", "-lp", "https"]
+CMD ["dotnet", "watch", "run", "--no-launch-profile"]

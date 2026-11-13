@@ -1,0 +1,60 @@
+services:
+# Production API needs further improvements to be ready for production, so for now we will just use the dev version
+  api-prod:
+    build:
+      context: . 
+      dockerfile: Dockerfile
+    image: portfolio-api:prod
+    container_name: portfolio-api-prod
+    ports:
+      - "4001:4001"
+
+  api-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+
+    image: portfolio-api:dev
+    container_name: portfolio-api-dev
+
+    ports:
+      - "4000:4000"
+
+    environment:
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/src/API/certificates/localhost.pem"
+      ASPNETCORE_Kestrel__Certificates__Default__KeyPath: "/src/API/certificates/localhost-key.pem"
+
+    volumes:
+      - ./API/certificates:/src/API/certificates:ro
+
+    develop:
+      watch:
+        - action: sync
+          path: ./API
+          target: /src/API
+          ignore:
+            - "**/bin/"
+            - "**/obj/"
+            - "**/.vs/"
+            - "**/.vscode/"
+            - "**/.idea/"
+            - "**/TestResults/"
+            - "**/certificates/"
+
+        - action: sync
+          path: ./DatabaseContext
+          target: /src/DatabaseContext
+          ignore:
+            - "**/bin/"
+            - "**/obj/"
+            - "**/.vs/"
+            - "**/.vscode/"
+            - "**/.idea/"
+            - "**/TestResults/"
+
+        - action : rebuild
+          path: ./API/API.csproj
+
+        - action : rebuild 
+          path: ./DatabaseContext/DatabaseContext.csproj
+    
