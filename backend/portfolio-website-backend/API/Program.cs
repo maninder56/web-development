@@ -10,7 +10,7 @@ builder.Services.AddOpenApi();
 
 
 // Add database services
-builder.Services.AddDatabaseServices(builder.Configuration);
+//builder.Services.AddDatabaseServices(builder.Configuration);
 
 var app = builder.Build();
 
