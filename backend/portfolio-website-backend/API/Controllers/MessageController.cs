@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DatabaseContext;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers; 
 
@@ -7,19 +9,30 @@ namespace API.Controllers;
 [ApiController]
 public class MessageController : ControllerBase
 {
-    private ILogger<MessageController> logger; 
+    private ILogger<MessageController> logger;
+    private PortfolioContext context; 
 
-    public MessageController(ILogger<MessageController> logger)
+    public MessageController(ILogger<MessageController> logger, PortfolioContext context)
     {
         this.logger = logger;
+        this.context = context;
     }
 
 
 
-    [HttpGet]
-    public async Task<IActionResult> GetMessages()
+    [HttpGet("Hello")]
+    public async Task<IActionResult> HelloAPI()
     {
         logger.LogInformation("GetMessages called");
         return Ok(new { message = "Hello from the API!" });
+    }
+
+
+    [HttpGet]
+    public async Task<IActionResult> AllMessages()
+    {
+        var messages = await context.Messages.ToListAsync();  
+        logger.LogInformation("AllMessages called, returning {Count} messages", messages.Count);
+        return Ok(messages);
     }
 }
