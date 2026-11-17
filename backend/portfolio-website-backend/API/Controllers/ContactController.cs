@@ -1,4 +1,6 @@
 ﻿using API.DTOs.Contact.Requests;
+using API.Services.ContactServices;
+using API.Utility;
 using DatabaseContext;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,19 +13,28 @@ namespace API.Controllers;
 public class ContactController : ControllerBase
 {
     private ILogger<ContactController> logger;
-    private PortfolioContext context; 
+    private IContactService contactService; 
 
-    public ContactController(ILogger<ContactController> logger, PortfolioContext context)
+    public ContactController(ILogger<ContactController> logger, IContactService contactService)
     {
         this.logger = logger;
-        this.context = context;
+        this.contactService = contactService;
     }
 
 
     [HttpPost]
-    public async Task<IActionResult> CreateNewMessage([FromBody] NewMessageRequest request)
+    public async Task<IActionResult> CreateNewMessage([FromBody] NewMessageRequest message)
     {
-        throw new NotImplementedException();
+        var result = await contactService.CreateNewMessageAsync(message); 
+
+        if (result.Successful)
+        {
+            return Created();
+        }
+        else
+        {
+            return result.Error.ErrorToActionResult(); 
+        }
     }
 
 }

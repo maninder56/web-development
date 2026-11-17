@@ -1,3 +1,4 @@
+using API.Handler;
 using API.HealthChecks;
 using API.ServiceRegistrationExtensions;
 
@@ -18,8 +19,14 @@ builder.Services.AddHealthChecks()
 // Add database services
 builder.Services.AddDatabaseServices(builder.Configuration);
 
+// Add application services
+builder.Services.AddAppServices(); 
+
 // Add CORS policy
 builder.Services.AddCorsPolicy(builder.Configuration);
+
+// Global Exception handler
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 var app = builder.Build();
 

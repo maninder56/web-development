@@ -1,4 +1,5 @@
-﻿using DatabaseContext;
+﻿using API.Repositories.ContactRepository;
+using DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.ServiceRegistrationExtensions; 
@@ -13,6 +14,7 @@ public static class DatabaseServiceRegistration
         services.AddDbContext<PortfolioContext>(options =>
             options.UseSqlServer(connectionString));
 
+        services.AddScoped<IContactRepository, ContactRepository>();
 
         return services;
     }
