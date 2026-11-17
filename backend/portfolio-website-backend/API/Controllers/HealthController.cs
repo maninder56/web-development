@@ -29,5 +29,12 @@ public class HealthController : ControllerBase
         });
         return Ok(new { status, details });
     }
+
+
+    [HttpGet("/")]
+    public async Task<IActionResult> HelloAPI()
+    {
+        return Ok(new { message = "Hello from the API!" });
+    }
 }
 

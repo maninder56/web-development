@@ -18,6 +18,9 @@ builder.Services.AddHealthChecks()
 // Add database services
 builder.Services.AddDatabaseServices(builder.Configuration);
 
+// Add CORS policy
+builder.Services.AddCorsPolicy(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
