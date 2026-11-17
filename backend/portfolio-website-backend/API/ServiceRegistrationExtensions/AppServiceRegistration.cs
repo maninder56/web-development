@@ -1,4 +1,5 @@
-﻿using API.Services.ContactServices;
+﻿using API.Models.EmailSettings;
+using API.Services.ContactServices;
 
 namespace API.ServiceRegistrationExtensions; 
 
@@ -8,6 +9,14 @@ public static class AppServiceRegistration
     {
         services.AddScoped<IContactService, ContactService>();
 
+        return services;
+    }
+
+
+    public static IServiceCollection AddEmailServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
+        
         return services;
     }
 }
