@@ -1,3 +1,4 @@
+using API.HealthChecks;
 using API.ServiceRegistrationExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,11 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+builder.Services.AddProblemDetails();
+
+// Register health checks
+builder.Services.AddHealthChecks()
+    .AddCheck<DatabaseHealthCheck>("Database");
 
 // Add database services
 builder.Services.AddDatabaseServices(builder.Configuration);
