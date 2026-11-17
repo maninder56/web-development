@@ -48,8 +48,9 @@ namespace DatabaseContext.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("SentStatus")
-                        .HasColumnType("int");
+                    b.Property<string>("SentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MessageId");
 
