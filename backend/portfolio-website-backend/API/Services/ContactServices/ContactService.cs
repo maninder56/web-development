@@ -36,9 +36,9 @@ public class ContactService : IContactService
             try
             {
                 // Attempt to send email
-                await emailService.SendClientMessageByEmailAsync(newMessage);
+                //await emailService.SendClientMessageByEmailAsync(newMessage);
 
-                await contactRepository.UpdateMessageSentStatusAsync(newMessage.MessageId, MessageSentStatus.Sent);
+                //await contactRepository.UpdateMessageSentStatusAsync(newMessage.MessageId, MessageSentStatus.Sent);
             }
             catch (Exception ex)
             {

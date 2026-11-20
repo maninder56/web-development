@@ -31,6 +31,9 @@ builder.Services.AddCorsPolicy(builder.Configuration);
 // Global Exception handler
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
+// Add rate limiting service
+builder.Services.AddRateLimitService();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,6 +43,16 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseRouting(); 
+
+
+string corsPolicyName = builder.Configuration["CorsPolicy:PolicyName"] ??
+    throw new InvalidOperationException("Failed to get Cors policy name");
+
+app.UseCors(corsPolicyName);
+
+app.UseRateLimiter(); 
 
 app.UseAuthorization();
 

@@ -4,12 +4,14 @@ using API.Utility;
 using DatabaseContext;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers; 
 
 [Route("api/[controller]")]
 [ApiController]
+[EnableRateLimiting("ContactRateLimit")]
 public class ContactController : ControllerBase
 {
     private ILogger<ContactController> logger;
