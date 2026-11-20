@@ -7,4 +7,5 @@ public class EmailSettings
     public int Port { get; set; }
     public string SenderName { get; set; } = string.Empty;
     public string SenderPassword { get; set; } = string.Empty;
+    public string SendToEmail { get; set; } = string.Empty;
 }

@@ -1,5 +1,11 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:10.0
 
+COPY API/certificates/norton-root.crt /usr/local/share/ca-certificates/norton-root.crt
+RUN apt-get update && \
+    apt-get install -y ca-certificates && \
+    update-ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /src 
 
 COPY ["API/API.csproj", "API/"]

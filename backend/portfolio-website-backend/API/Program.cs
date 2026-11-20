@@ -20,7 +20,10 @@ builder.Services.AddHealthChecks()
 builder.Services.AddDatabaseServices(builder.Configuration);
 
 // Add application services
-builder.Services.AddAppServices(); 
+builder.Services.AddAppServices();
+
+// ADd email services
+builder.Services.AddEmailServices(builder.Configuration);
 
 // Add CORS policy
 builder.Services.AddCorsPolicy(builder.Configuration);

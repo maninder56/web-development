@@ -24,6 +24,7 @@ services:
       ASPNETCORE_Kestrel__Certificates__Default__Path: "/src/API/certificates/localhost.pem"
       ASPNETCORE_Kestrel__Certificates__Default__KeyPath: "/src/API/certificates/localhost-key.pem"
       ConnectionStrings__DefaultConnection: "Server=host.docker.internal,1433;Database=PortfolioDb;User Id=developer;Password=${DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
+      EmailSettings__SenderPassword: "${EmailSenderPassword}"
 
     volumes:
       - ./API/certificates:/src/API/certificates:ro
