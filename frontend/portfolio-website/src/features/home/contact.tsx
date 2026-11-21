@@ -3,10 +3,24 @@
 import SecondaryButton from '@/components/ui/secondaryButton';
 import SecondaryExternalLinkButton from '@/components/ui/secondaryExternalLinkButton';
 import { HomePageNavigationElementID } from '@/types/global';
+import { FormEvent, useState } from 'react';
 
 const contactSectionId: HomePageNavigationElementID = 'contact'; 
 
 export default function Contact() {
+
+    const [name, setName] = useState(''); 
+    const [email, setEmail] = useState(''); 
+    const [message, setMessage] = useState(''); 
+
+    const [buttonDisabled, setButtonDisabled] = useState(true); 
+    const [submitError, setSubmitError] = useState(''); 
+
+    async function handleFormSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+        e.preventDefault(); 
+        setButtonDisabled(true); 
+    }
+
     return (
         <div className='text-text-secondary max-w-5xl m-auto py-30 p-2'>
             <h2 id={contactSectionId} 
@@ -20,9 +34,7 @@ export default function Contact() {
             <div className='flex flex-col gap-20 md:gap-10 md:flex-row'>
                 <form 
                     className='max-w-xl m-auto w-full'
-                    onSubmit={(e) => {
-                        e.preventDefault(); 
-                    }}
+                    onSubmit={handleFormSubmit}
                 >
                     <div className='m-2 flex flex-col'>
                         <label 
@@ -39,6 +51,8 @@ export default function Contact() {
                             autoComplete='name' 
                             required 
                             maxLength={100}
+                            value={name}
+                            onChange={e => setName(e.target.value)}
                             className={`
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
                                 text-base
@@ -62,6 +76,8 @@ export default function Contact() {
                             autoComplete='email' 
                             required 
                             maxLength={200}
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                             className={`
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
                                 text-base
@@ -83,6 +99,8 @@ export default function Contact() {
                             placeholder='Tell me what you have in mind'
                             required
                             maxLength={500}
+                            value={message}
+                            onChange={e => setMessage(e.target.value)}
                             className={`
                                 min-h-24 max-h-64 overflow-y-auto resize-y
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
