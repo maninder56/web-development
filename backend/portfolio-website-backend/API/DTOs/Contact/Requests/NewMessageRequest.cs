@@ -17,7 +17,7 @@ public class NewMessageRequest : IValidatableObject
     [Required(ErrorMessage = "Message is required.")]
     [MinLength(1, ErrorMessage = "Message must be at least 1 character long.")]
     [StringLength(2000, ErrorMessage = "Message cannot exceed 2000 characters.")]
-    public required string MessageContent { get; set; }
+    public required string Message { get; set; }
 
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -32,9 +32,9 @@ public class NewMessageRequest : IValidatableObject
             yield return new ValidationResult("Email cannot be empty or whitespace.", [nameof(Email)]);
         }
 
-        if (string.IsNullOrWhiteSpace(MessageContent))
+        if (string.IsNullOrWhiteSpace(Message))
         {
-            yield return new ValidationResult("Message cannot be empty or whitespace.", [nameof(MessageContent)]);
+            yield return new ValidationResult("Message cannot be empty or whitespace.", [nameof(Message)]);
         }
 
         if (Name.Any(char.IsControl))
@@ -51,12 +51,12 @@ public class NewMessageRequest : IValidatableObject
                 [nameof(Email)]);
         }
 
-        if (MessageContent.Any(c =>
+        if (Message.Any(c =>
             char.IsControl(c) && c != '\r' && c != '\n' && c != '\t'))
         {
             yield return new ValidationResult(
                 "Message contains invalid control characters.",
-                [nameof(MessageContent)]);
+                [nameof(Message)]);
         }
     }
 }

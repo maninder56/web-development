@@ -28,7 +28,7 @@ public class ContactService : IContactService
             {
                 Name = newMessageRequest.Name,
                 Email = newMessageRequest.Email, 
-                MessageContent = newMessageRequest.MessageContent,
+                MessageContent = newMessageRequest.Message,
             };
 
             await contactRepository.CreateNewMessageAsync(newMessage);
@@ -36,9 +36,9 @@ public class ContactService : IContactService
             try
             {
                 // Attempt to send email
-                //await emailService.SendClientMessageByEmailAsync(newMessage);
+                await emailService.SendClientMessageByEmailAsync(newMessage);
 
-                //await contactRepository.UpdateMessageSentStatusAsync(newMessage.MessageId, MessageSentStatus.Sent);
+                await contactRepository.UpdateMessageSentStatusAsync(newMessage.MessageId, MessageSentStatus.Sent);
             }
             catch (Exception ex)
             {
