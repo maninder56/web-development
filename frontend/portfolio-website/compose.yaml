@@ -16,6 +16,8 @@ services:
     container_name: portfolio-website
     ports:
       - "3000:3000"
+    environment:
+      NEXT_PUBLIC_APIURL: ${NEXT_PUBLIC_APIURL}
     volumes:
       - ./certificates:/app/certificates:ro
     develop:

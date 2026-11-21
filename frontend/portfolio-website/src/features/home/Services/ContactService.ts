@@ -18,7 +18,7 @@ export async function SendNewMessageRequest(data: {
         body: JSON.stringify({
             Name: data.name, 
             Email: data.email, 
-            message: data.message, 
+            Message: data.message, 
         }), 
     }; 
 

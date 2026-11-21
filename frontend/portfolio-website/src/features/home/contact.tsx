@@ -4,6 +4,7 @@ import SecondaryButton from '@/components/ui/secondaryButton';
 import SecondaryExternalLinkButton from '@/components/ui/secondaryExternalLinkButton';
 import { HomePageNavigationElementID } from '@/types/global';
 import { FormEvent, useState } from 'react';
+import { SendNewMessageRequest } from './Services/ContactService';
 
 const contactSectionId: HomePageNavigationElementID = 'contact'; 
 
@@ -28,7 +29,27 @@ export default function Contact() {
 
     async function handleFormSubmit(e: React.SubmitEvent<HTMLFormElement>) {
         e.preventDefault(); 
-        
+        setIsSubmitting(true); 
+
+        try {
+            const request = await SendNewMessageRequest({
+                name: name, email: email, message: message
+            }); 
+
+            if (request.ok) {
+                setSubmitError(''); 
+                setName(''); 
+                setEmail(''); 
+                setMessage(''); 
+            } else if (request.error === 'TooManyRequests') {
+                setSubmitError('Too many messages has been sent in short time, please wait to send another message.'); 
+            } else {
+                setSubmitError('Failed to send message, Please try again.'); 
+            }
+
+        } finally {
+            setIsSubmitting(false); 
+        }
     }
 
 
@@ -160,6 +181,7 @@ export default function Contact() {
                     <SecondaryButton className='m-auto mt-5' disabled={buttonDisabled}>
                         <span>Send Message</span>
                     </SecondaryButton>
+                    <span className='block text-center text-red-500 mt-4'>{submitError}</span>
                 </form>
                 <div className='flex-1 m-auto'>
                     <div className='text-center mb-15'>
