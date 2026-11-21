@@ -8,18 +8,64 @@ import { FormEvent, useState } from 'react';
 const contactSectionId: HomePageNavigationElementID = 'contact'; 
 
 export default function Contact() {
-
+    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
     const [name, setName] = useState(''); 
     const [email, setEmail] = useState(''); 
     const [message, setMessage] = useState(''); 
 
-    const [buttonDisabled, setButtonDisabled] = useState(true); 
     const [submitError, setSubmitError] = useState(''); 
+    const [fieldErrors, setFieldErrors] = useState({name: '', email: '', message: ''}); 
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const isFormValid =
+        validateName(name) === '' &&
+        validateEmail(email) === '' &&
+        validateMessage(message) === '';
+
+    const buttonDisabled = !isFormValid || isSubmitting;
 
     async function handleFormSubmit(e: React.SubmitEvent<HTMLFormElement>) {
         e.preventDefault(); 
-        setButtonDisabled(true); 
+        
     }
+
+
+
+    function validateName(value: string) {
+        return value.trim() === '' ? 'Name is required' : '';
+    }
+
+    function validateEmail(value: string) {
+        const trimmed = value.trim();
+        if (trimmed === '') return 'Email is required';
+        if (!EMAIL_REGEX.test(trimmed)) return 'Please enter a valid email address';
+        return '';
+    }
+
+    function validateMessage(value: string) {
+        const trimmed = value.trim();
+        if (trimmed === '') return 'Message is required';
+        if (trimmed.length < 10) return 'Please write at least 10 characters';
+        return '';
+    }
+
+    function handleNameChange(value: string) {
+        setName(value);
+        setFieldErrors(prev => ({ ...prev, name: validateName(value) }));
+    }
+
+    function handleEmailChange(value: string) {
+        setEmail(value);
+        setFieldErrors(prev => ({ ...prev, email: validateEmail(value) }));
+    }
+
+    function handleMessageChange(value: string) {
+        setMessage(value);
+        setFieldErrors(prev => ({ ...prev, message: validateMessage(value) }));
+    }
+
 
     return (
         <div className='text-text-secondary max-w-5xl m-auto py-30 p-2'>
@@ -49,10 +95,9 @@ export default function Contact() {
                             name='name' 
                             type='text' 
                             autoComplete='name' 
-                            required 
                             maxLength={100}
                             value={name}
-                            onChange={e => setName(e.target.value)}
+                            onChange={e => handleNameChange(e.target.value)}
                             className={`
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
                                 text-base
@@ -60,6 +105,7 @@ export default function Contact() {
                                 focus:border-transparent transition
                             `}
                         />
+                        <span className='ml-4 text-base text-red-500'>{fieldErrors.name}</span>
                     </div>
                     <div className='m-2 mt-5 flex flex-col'>
                         <label 
@@ -74,10 +120,9 @@ export default function Contact() {
                             name='email' 
                             type='email' 
                             autoComplete='email' 
-                            required 
                             maxLength={200}
                             value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={e => handleEmailChange(e.target.value)}
                             className={`
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
                                 text-base
@@ -85,6 +130,7 @@ export default function Contact() {
                                 focus:border-transparent transition
                             `}
                         />
+                        <span className='ml-4 text-base text-red-500'>{fieldErrors.email}</span>
                     </div>
                     <div className='m-2 mt-5 flex flex-col'>
                         <label
@@ -97,10 +143,9 @@ export default function Contact() {
                             name='message'
                             rows={5}
                             placeholder='Tell me what you have in mind'
-                            required
                             maxLength={500}
                             value={message}
-                            onChange={e => setMessage(e.target.value)}
+                            onChange={e => handleMessageChange(e.target.value)}
                             className={`
                                 min-h-24 max-h-64 overflow-y-auto resize-y
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
@@ -109,9 +154,10 @@ export default function Contact() {
                                 focus:border-transparent transition
                             `}
                         />
+                        <span className='ml-4 text-base text-red-500'>{fieldErrors.message}</span>
                     </div>
                     <p className='font-body text-base text-center'>I&apos;ll only use your details to reply to your message.</p>
-                    <SecondaryButton className='m-auto mt-5'>
+                    <SecondaryButton className='m-auto mt-5' disabled={buttonDisabled}>
                         <span>Send Message</span>
                     </SecondaryButton>
                 </form>
