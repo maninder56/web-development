@@ -19,6 +19,7 @@ export default function Contact() {
     const [fieldErrors, setFieldErrors] = useState({name: '', email: '', message: ''}); 
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [messageSent, setMessageSent] = useState(false); 
 
     const isFormValid =
         validateName(name) === '' &&
@@ -37,6 +38,7 @@ export default function Contact() {
             }); 
 
             if (request.ok) {
+                setMessageSent(true); 
                 setSubmitError(''); 
                 setName(''); 
                 setEmail(''); 
@@ -103,6 +105,7 @@ export default function Contact() {
                     className='max-w-xl m-auto w-full'
                     onSubmit={handleFormSubmit}
                 >
+                    <span className='text-center text-xl mb-2 block'>{messageSent ? 'Message sent successfully!' : ''}</span>
                     <div className='m-2 flex flex-col'>
                         <label 
                             htmlFor='name'
