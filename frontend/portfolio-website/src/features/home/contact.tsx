@@ -3,7 +3,7 @@
 import SecondaryButton from '@/components/ui/secondaryButton';
 import SecondaryExternalLinkButton from '@/components/ui/secondaryExternalLinkButton';
 import { HomePageNavigationElementID } from '@/types/global';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { SendNewMessageRequest } from './Services/ContactService';
 
 const contactSectionId: HomePageNavigationElementID = 'contact'; 
