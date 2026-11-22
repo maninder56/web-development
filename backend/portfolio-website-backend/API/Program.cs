@@ -1,6 +1,7 @@
 using API.Handler;
 using API.HealthChecks;
 using API.ServiceRegistrationExtensions;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +43,20 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+
+// May need https redirection in production, but not in development. This is commented out for now.
+//app.UseHttpsRedirection();
+
+//if (app.Environment.IsProduction())
+//{
+//    app.UseForwardedHeaders(new ForwardedHeadersOptions
+//    {
+//        ForwardedHeaders =
+//            ForwardedHeaders.XForwardedFor |
+//            ForwardedHeaders.XForwardedProto |
+//            ForwardedHeaders.XForwardedHost,
+//    });
+//}
 
 app.UseRouting(); 
 
