@@ -3,10 +3,15 @@ services:
     build:
       context: . 
       dockerfile: Dockerfile
+      args:
+      # In produciton api URL will be different
+        NEXT_PUBLIC_APIURL: https://localhost:4001/api/
     image: portfolio-website:prod
     container_name: portfolio-website-prod
     ports:
       - "3001:3001"
+    environment:
+      NEXT_PUBLIC_APIURL: https://localhost:4001/api/
 
   nextjs-dev:
     build:
