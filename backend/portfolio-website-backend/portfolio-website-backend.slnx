@@ -1,3 +1,11 @@
 <Solution>
-  <Project Path="portfolio-website-backend.csproj" />
+  <Folder Name="/Solution Items/">
+    <File Path=".dockerignore" />
+    <File Path=".env" />
+    <File Path="compose.yaml" />
+    <File Path="Dockerfile" />
+    <File Path="Dockerfile.dev" />
+  </Folder>
+  <Project Path="API/API.csproj" />
+  <Project Path="DatabaseContext/DatabaseContext.csproj" />
 </Solution>

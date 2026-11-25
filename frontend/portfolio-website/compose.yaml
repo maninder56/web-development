@@ -3,10 +3,14 @@ services:
     build:
       context: . 
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_APIURL: ${NEXT_PUBLIC_APIURL}
     image: portfolio-website:prod
     container_name: portfolio-website-prod
     ports:
       - "3001:3001"
+    environment:
+      NEXT_PUBLIC_APIURL: ${NEXT_PUBLIC_APIURL}
 
   nextjs-dev:
     build:
@@ -16,6 +20,10 @@ services:
     container_name: portfolio-website
     ports:
       - "3000:3000"
+    env_file:
+      - .env.development
+    environment:
+      NEXT_PUBLIC_APIURL: ${NEXT_PUBLIC_APIURL}
     volumes:
       - ./certificates:/app/certificates:ro
     develop:

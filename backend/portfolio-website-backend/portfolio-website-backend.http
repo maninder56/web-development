@@ -1,6 +1,0 @@
-@portfolio_website_backend_HostAddress = http://localhost:5125
-
-GET {{portfolio_website_backend_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

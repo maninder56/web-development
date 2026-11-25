@@ -26,16 +26,13 @@ export default function Home() {
             <p className='font-body text-text-primary text-base sm:text-lg'>
               Full-stack developer turning business ideas into polished, production-ready web applications.
             </p>
-            <div className='flex justify-between p-2'>
+            <div className='flex justify-center p-2'>
               <PrimaryScrollButton tagId='contact' className='font-body'>
                 <span className='mr-2'>Contact</span>
                 <svg className='w-5 m-auto' viewBox='0 0 29 20' fill='none'>
                   <path d='M2.355 20c-2.32 0-.038-2.308-.038-2.308l5.918-6.374c.575-.62 1.686-1.56 2.335-1.041.65.519 1.516 1.57 2.12 2.164l1.224 1.2c.656.57 1.16 0 1.16 0l1.253-1.209c.609-.588 1.48-1.614 2.131-2.092.65-.477 1.757.43 2.33 1.052l5.883 6.37C28.993 20 26.709 20 26.709 20zm1.004-5.244c-.575.62-1.416 1.699-1.984 2.325C.733 17.788 0 18.325 0 17.087L.028 4.653C.03 3.815.006 2.216.59 2.503c.217.107.514.329.918.725l4.788 3.84c.662.53 1.594 1.18 1.9 1.612.192.273.28.59.002.864zm12.907-4.417c-.66.531-1.38 1.286-1.746 1.287s-1.099-.737-1.763-1.265L2.337 2.078C1.674 1.55.53.488 1.098.202 1.51-.004 2.228 0 2.228 0H26.71c2.204 0 1.083 1.067 1.083 1.067zm11.357 6.742c-.569-.625-1.41-1.704-1.985-2.325l-4.837-5.212c-.28-.275-.192-.592 0-.864.306-.433 1.239-1.082 1.9-1.612l3.592-2.88c.662-.53 1.532-1.398 2.116-1.685.583-.287.558 1.312.56 2.15L29 17.087c0 1.238-.734.7-1.377-.006' 
                     fill='#EBE2CC'/>
                 </svg>
-              </PrimaryScrollButton>
-              <PrimaryScrollButton tagId='d' className='font-body'>
-                <span>Resume</span>
               </PrimaryScrollButton>
             </div>
           </div>

@@ -17,6 +17,9 @@ COPY --from=dependencies /app/node_modules ./node_modules
 
 COPY . .
 
+ARG NEXT_PUBLIC_APIURL
+ENV NEXT_PUBLIC_APIURL=$NEXT_PUBLIC_APIURL
+
 ENV NODE_ENV=production
 
 RUN npm run build

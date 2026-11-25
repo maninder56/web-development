@@ -3,10 +3,93 @@
 import SecondaryButton from '@/components/ui/secondaryButton';
 import SecondaryExternalLinkButton from '@/components/ui/secondaryExternalLinkButton';
 import { HomePageNavigationElementID } from '@/types/global';
+import { useState } from 'react';
+import { SendNewMessageRequest } from './Services/ContactService';
 
 const contactSectionId: HomePageNavigationElementID = 'contact'; 
 
 export default function Contact() {
+    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    const [name, setName] = useState(''); 
+    const [email, setEmail] = useState(''); 
+    const [message, setMessage] = useState(''); 
+
+    const [submitError, setSubmitError] = useState(''); 
+    const [fieldErrors, setFieldErrors] = useState({name: '', email: '', message: ''}); 
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [messageSent, setMessageSent] = useState(false); 
+
+    const isFormValid =
+        validateName(name) === '' &&
+        validateEmail(email) === '' &&
+        validateMessage(message) === '';
+
+    const buttonDisabled = !isFormValid || isSubmitting;
+
+    async function handleFormSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+        e.preventDefault(); 
+        setIsSubmitting(true); 
+
+        try {
+            const request = await SendNewMessageRequest({
+                name: name, email: email, message: message
+            }); 
+
+            if (request.ok) {
+                setMessageSent(true); 
+                setSubmitError(''); 
+                setName(''); 
+                setEmail(''); 
+                setMessage(''); 
+            } else if (request.error === 'TooManyRequests') {
+                setSubmitError('Too many messages has been sent in short time, please wait to send another message.'); 
+            } else {
+                setSubmitError('Failed to send message, Please try again.'); 
+            }
+
+        } finally {
+            setIsSubmitting(false); 
+        }
+    }
+
+
+
+    function validateName(value: string) {
+        return value.trim() === '' ? 'Name is required' : '';
+    }
+
+    function validateEmail(value: string) {
+        const trimmed = value.trim();
+        if (trimmed === '') return 'Email is required';
+        if (!EMAIL_REGEX.test(trimmed)) return 'Please enter a valid email address';
+        return '';
+    }
+
+    function validateMessage(value: string) {
+        const trimmed = value.trim();
+        if (trimmed === '') return 'Message is required';
+        if (trimmed.length < 10) return 'Please write at least 10 characters';
+        return '';
+    }
+
+    function handleNameChange(value: string) {
+        setName(value);
+        setFieldErrors(prev => ({ ...prev, name: validateName(value) }));
+    }
+
+    function handleEmailChange(value: string) {
+        setEmail(value);
+        setFieldErrors(prev => ({ ...prev, email: validateEmail(value) }));
+    }
+
+    function handleMessageChange(value: string) {
+        setMessage(value);
+        setFieldErrors(prev => ({ ...prev, message: validateMessage(value) }));
+    }
+
+
     return (
         <div className='text-text-secondary max-w-5xl m-auto py-30 p-2'>
             <h2 id={contactSectionId} 
@@ -20,10 +103,9 @@ export default function Contact() {
             <div className='flex flex-col gap-20 md:gap-10 md:flex-row'>
                 <form 
                     className='max-w-xl m-auto w-full'
-                    onSubmit={(e) => {
-                        e.preventDefault(); 
-                    }}
+                    onSubmit={handleFormSubmit}
                 >
+                    <span className='text-center text-xl mb-2 block'>{messageSent ? 'Message sent successfully!' : ''}</span>
                     <div className='m-2 flex flex-col'>
                         <label 
                             htmlFor='name'
@@ -37,8 +119,9 @@ export default function Contact() {
                             name='name' 
                             type='text' 
                             autoComplete='name' 
-                            required 
                             maxLength={100}
+                            value={name}
+                            onChange={e => handleNameChange(e.target.value)}
                             className={`
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
                                 text-base
@@ -46,6 +129,7 @@ export default function Contact() {
                                 focus:border-transparent transition
                             `}
                         />
+                        <span className='ml-4 text-base text-red-500'>{fieldErrors.name}</span>
                     </div>
                     <div className='m-2 mt-5 flex flex-col'>
                         <label 
@@ -60,8 +144,9 @@ export default function Contact() {
                             name='email' 
                             type='email' 
                             autoComplete='email' 
-                            required 
                             maxLength={200}
+                            value={email}
+                            onChange={e => handleEmailChange(e.target.value)}
                             className={`
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
                                 text-base
@@ -69,6 +154,7 @@ export default function Contact() {
                                 focus:border-transparent transition
                             `}
                         />
+                        <span className='ml-4 text-base text-red-500'>{fieldErrors.email}</span>
                     </div>
                     <div className='m-2 mt-5 flex flex-col'>
                         <label
@@ -81,8 +167,9 @@ export default function Contact() {
                             name='message'
                             rows={5}
                             placeholder='Tell me what you have in mind'
-                            required
                             maxLength={500}
+                            value={message}
+                            onChange={e => handleMessageChange(e.target.value)}
                             className={`
                                 min-h-24 max-h-64 overflow-y-auto resize-y
                                 font-body m-2 p-2 rounded-lg border-[1.4px] border-border-dark
@@ -91,11 +178,13 @@ export default function Contact() {
                                 focus:border-transparent transition
                             `}
                         />
+                        <span className='ml-4 text-base text-red-500'>{fieldErrors.message}</span>
                     </div>
                     <p className='font-body text-base text-center'>I&apos;ll only use your details to reply to your message.</p>
-                    <SecondaryButton className='m-auto mt-5'>
+                    <SecondaryButton className='m-auto mt-5' disabled={buttonDisabled}>
                         <span>Send Message</span>
                     </SecondaryButton>
+                    <span className='block text-center text-red-500 mt-4'>{submitError}</span>
                 </form>
                 <div className='flex-1 m-auto'>
                     <div className='text-center mb-15'>
