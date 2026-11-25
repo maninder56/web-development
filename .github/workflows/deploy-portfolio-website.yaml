@@ -37,6 +37,8 @@ jobs:
         with: 
           context: ./frontend/portfolio-website
           push: true
+          build-args: | 
+            NEXT_PUBLIC_APIURL=/api
           tags: | 
             ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-website:${{ github.sha }}
             ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-website:latest 
@@ -48,10 +50,12 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy image to Azure
-        uses: azure/webapps-deploy@v3
+        uses: azure/container-apps-deploy-action@v2
         with:
-          app-name: ${{ secrets.AZURE_WEBAPP_PORTFOLIO_WEBSITE }}
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-website:latest
+          containerAppName: portfolio-website
+          resourceGroup: PortfolioWebsitesResourceGoup
+          imageToDeploy: ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-website:${{ github.sha }}
+          targetPort: 3001
 
 
  
