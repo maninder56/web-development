@@ -28,7 +28,7 @@ WORKDIR /app
 
 # May need to chage the environment variables in production
 ENV ASPNETCORE_ENVIRONMENT=Production
-ENV ASPNETCORE_URLS=https://+:4001
+ENV ASPNETCORE_URLS=http://+:4001
 
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "API.dll"]

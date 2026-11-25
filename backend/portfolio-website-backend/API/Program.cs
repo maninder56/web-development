@@ -43,6 +43,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.UseExceptionHandler(); 
 
 // May need https redirection in production, but not in development. This is commented out for now.
 //app.UseHttpsRedirection();
